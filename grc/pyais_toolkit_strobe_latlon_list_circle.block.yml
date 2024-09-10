@@ -1,0 +1,58 @@
+id: pyais_toolbox_strobe_latlon_list_circle
+label: latlon List Strobe (Circle)
+category: '[pyais_toolbox]/Strobes'
+
+templates:
+  imports: from gnuradio import pyais_toolbox
+  make: pyais_toolbox.strobe_latlon_list_circle(${interval},${latlon_source},${lat_ref}, ${lon_ref}, ${radius}, ${num_points})
+
+#  Make one 'parameters' list entry for every parameter you want settable from the GUI.
+#     Keys include:
+#     * id (makes the value accessible as keyname, e.g. in the make entry)
+#     * label (label shown in the GUI)
+#     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#     * default
+parameters:
+- id: interval
+  label: Interval (s)
+  dtype: int
+  default: 1
+- id: latlon_source
+  label: LatLon Ref Source
+  dtype: string
+  options: ['Manual Entry', 'latlon MSG Input']
+  default: 'Manual Entry'
+- id: lat_ref
+  label: Ref Latitude
+  dtype: float
+  default: 0.0
+- id: lon_ref
+  label: Ref Longitude
+  dtype: float
+  default: 0.0
+- id: radius
+  label: Radius (m)
+  dtype: int
+  default: 100
+- id: num_points
+  label: Number of Points
+  dtype: int
+  default: 32
+
+inputs:
+- label: latlon
+  domain: message
+  dtype: message
+  optional: true
+- label: set_params
+  domain: message
+  dtype: message
+  optional: true
+
+outputs:
+- label: latlon_vec
+  domain: message
+  dtype: message
+  optional: true
+
+file_format: 1

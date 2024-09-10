@@ -16,5 +16,8 @@ install(FILES
     pyais_toolkit_message_type_5.block.yml
     pyais_toolkit_message_type_6.block.yml
     pyais_toolkit_message_type_8.block.yml
-    pyais_toolkit_message_type_9.block.yml DESTINATION share/gnuradio/grc/blocks
+    pyais_toolkit_message_type_9.block.yml
+    pyais_toolkit_strobe_random_latlon.block.yml
+    pyais_toolkit_strobe_random_latlon_bounding_box.block.yml
+    pyais_toolkit_strobe_latlon_list_circle.block.yml DESTINATION share/gnuradio/grc/blocks
 )

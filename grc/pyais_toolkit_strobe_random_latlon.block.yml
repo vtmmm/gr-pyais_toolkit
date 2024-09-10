@@ -1,0 +1,54 @@
+id: pyais_toolbox_strobe_random_latlon
+label: Random latlon (Radius)
+category: '[pyais_toolbox]/Strobes'
+
+templates:
+  imports: from gnuradio import pyais_toolbox
+  make: pyais_toolbox.strobe_random_latlon(${interval}, ${lat_center}, ${lon_center}, ${offset}) 
+
+#  Make one 'parameters' list entry for every parameter you want settable from the GUI.
+#     Keys include:
+#     * id (makes the value accessible as keyname, e.g. in the make entry)
+#     * label (label shown in the GUI)
+#     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#     * default
+parameters:
+- id: interval
+  label: Interval (s)
+  dtype: float
+  default: 1.0
+- id: lat_center
+  label: Lat Center
+  dtype: float
+  default: 0
+- id: lon_center
+  label: Lon Center
+  dtype: float
+  default: 0
+- id: offset
+  label: Offset (km)
+  dtype: float
+  default: 0
+
+inputs:
+- label: latlon
+  domain: message
+  dtype: message
+  optional: true
+- label: set_params
+  domain: message
+  dtype: message
+  optional: true
+
+outputs:
+- label: latlon
+  domain: message
+  dtype: message
+  optional: true
+
+asserts:
+- ${ interval > 0.01 }
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

@@ -30,4 +30,7 @@ from .message_type_5 import message_type_5
 from .message_type_6 import message_type_6
 from .message_type_8 import message_type_8
 from .message_type_9 import message_type_9
+from .strobe_random_latlon import strobe_random_latlon
+from .strobe_random_latlon_bounding_box import strobe_random_latlon_bounding_box
+from .strobe_latlon_list_circle import strobe_latlon_list_circle
 #
