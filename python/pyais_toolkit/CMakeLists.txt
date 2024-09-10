@@ -34,7 +34,11 @@ GR_PYTHON_INSTALL(
     message_type_9.py
     strobe_random_latlon.py
     strobe_random_latlon_bounding_box.py
-    strobe_latlon_list_circle.py DESTINATION ${GR_PYTHON_DIR}/gnuradio/pyais_toolkit
+    strobe_latlon_list_circle.py
+    filter_pyais_combined.py
+    filter_param_dictionary.py
+    filter_bounding_box.py
+    filter_distance.py DESTINATION ${GR_PYTHON_DIR}/gnuradio/pyais_toolkit
 )
 
 ########################################################################

@@ -1,0 +1,143 @@
+id: pyais_toolbox_filter_pyais_combined
+label: pyais Combined Filter
+category: '[pyais_toolbox]/Message Filters'
+
+templates:
+  imports: from gnuradio import pyais_toolbox
+  make: pyais_toolbox.filter_pyais_combined(${use_NoneFilter},${required_attributes},${use_MessageTypeFilter},${msg_types_kept},${use_DistanceFilter},${latlon_source},${lat_ref},${lon_ref},${distance_km},${use_GridFilter},${lat_min},${lat_max},${lon_min},${lon_max},${no_filter_policy})
+
+#  Make one 'parameters' list entry for every parameter you want settable from the GUI.
+#     Keys include:
+#     * id (makes the value accessible as keyname, e.g. in the make entry)
+#     * label (label shown in the GUI)
+#     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#     * default
+parameters:
+- id: use_NoneFilter
+  label: Use NoneFilter
+  dtype: enum
+  default: 'False'
+  options: ['True', 'False']
+  option_labels: ['True', 'False']
+  option_attributes:
+    hide: ['False', 'True']
+- id: required_attributes
+  label: Required Attributes (python list)
+  dtype: raw
+  default: ['mmsi', 'lat']
+  hide: ${ ('part' if use_NoneFilter=='True' else 'all') }
+- id: use_MessageTypeFilter
+  label: Use MessageTypeFilter
+  dtype: enum
+  default: 'False'
+  options: ['True', 'False']
+  option_labels: ['True', 'False']
+  option_attributes:
+    hide: ['False', 'True']
+- id: msg_types_kept
+  label: Msg Types Kept (python list)
+  dtype: raw
+  default: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]
+  hide: ${ ('part' if use_MessageTypeFilter=='True' else 'all') }
+- id: use_DistanceFilter
+  label: Use DistanceFilter
+  dtype: enum
+  default: 'False'
+  options: ['True', 'False']
+  option_labels: ['True', 'False']
+  option_attributes:
+    hide: ['False', 'True']
+- id: latlon_source
+  label: LatLon Reference Source
+  dtype: string
+  default: 'Manual Entry'
+  options: ['Manual Entry', 'latlon MSG Input']
+  hide: ${ ('part' if use_DistanceFilter=='True' else 'all') }
+- id: lat_ref
+  label: Reference Latitude
+  dtype: float
+  default: 0.0
+  hide: ${ ('part' if use_DistanceFilter=='True' and latlon_source=='Manual Entry' else 'all') }
+- id: lon_ref
+  label: Reference Longitude
+  dtype: float
+  default: 0.0
+  hide: ${ ('part' if use_DistanceFilter=='True' and latlon_source=='Manual Entry' else 'all')}
+- id: distance_km
+  label: Distance (km)
+  dtype: float
+  default: 1.0
+  hide: ${ ('part' if use_DistanceFilter=='True' else 'all') }
+- id: use_GridFilter
+  label: Use GridFilter
+  dtype: enum
+  default: 'False'
+  options: ['True', 'False']
+  option_labels: ['True', 'False']
+  option_attributes:
+    hide: ['False', 'True']
+- id: lat_min
+  label: Min Latitude
+  dtype: float
+  default: 0.0
+  hide: ${ ('part' if use_GridFilter=='True' else 'all') }
+- id: lat_max
+  label: Max Latitude
+  dtype: float
+  default: 0.0
+  hide: ${ ('part' if use_GridFilter=='True' else 'all') }
+- id: lon_min
+  label: Min Longitude
+  dtype: float
+  default: 0.0
+  hide: ${ ('part' if use_GridFilter=='True' else 'all') }
+- id: lon_max
+  label: Min Longitude
+  dtype: float
+  default: 0.0
+  hide: ${ ('part' if use_GridFilter=='True' else 'all') }
+- id: no_filter_policy
+  label: No-Filter Policy
+  dtype: enum
+  default: "'BLOCK ALL'"
+  options: ["'BLOCK ALL'", "'PASS ALL'"]
+  option_labels: ['BLOCK ALL', 'PASS ALL']
+  hide: ${ ('none' if 'True' not in [use_NoneFilter, use_MessageTypeFilter, use_GridFilter] and (use_DistanceFilter=='False' or (use_DistanceFilter=='True' and latlon_source=='latlon MSG Input')) else 'all') }
+
+asserts:
+- ${ (lat_min < lat_max) or (use_GridFilter=='False') }
+- ${ (lon_min < lon_max) or (use_GridFilter=='False') }
+- ${ type(required_attributes)==list or use_NoneFilter=='False'}
+- ${ all(isinstance(attribute, str) for attribute in required_attributes) or use_NoneFilter=='False' }
+- ${ (len(required_attributes) > 0) or use_NoneFilter=='False' }
+- ${ type(msg_types_kept)==list or use_MessageTypeFilter=='False' }
+- ${ all(isinstance(msg_type, int) and 1<=msg_type<=27 for msg_type in msg_types_kept) or use_MessageTypeFilter=='False'}
+- ${ (len(msg_types_kept) > 0) or use_MessageTypeFilter=='False' }
+
+
+#  Make one 'inputs' list entry per input and one 'outputs' list entry per output.
+#  Keys include:
+#      * label (an identifier for the GUI)
+#      * domain (optional - stream or message. Default is stream)
+#      * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#      * vlen (optional - data stream vector length. Default is 1)
+#      * optional (optional - set to 1 for optional inputs. Default is 0)
+inputs:
+- label: nmea_list
+  domain: message
+  dtype: message
+  optional: true
+- label: latlon
+  domain: message
+  dtype: message
+  optional: true
+
+outputs:
+- label: nmea_list
+  domain: message
+  dtype: message
+  optional: true
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

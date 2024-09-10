@@ -1,0 +1,71 @@
+id: pyais_toolbox_filter_distance
+label: Distance Filter (WGS84)
+category: '[pyais_toolbox]/Message Filters'
+
+templates:
+  imports: from gnuradio import pyais_toolbox
+  make: pyais_toolbox.filter_distance(${lat_ref}, ${lon_ref}, ${distance_min}, ${distance_max})
+
+#  Make one 'parameters' list entry for every parameter you want settable from the GUI.
+#     Keys include:
+#     * id (makes the value accessible as keyname, e.g. in the make entry)
+#     * label (label shown in the GUI)
+#     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#     * default
+parameters:
+- id: lat_ref
+  label: Reference Lat
+  dtype: float
+  default: 0.0
+- id: lon_ref
+  label: Reference Lon
+  dtype: float
+  default: 0.0
+- id: distance_min
+  label: Min Distance (km)
+  dtype: float
+  default: 0.0
+- id: distance_max
+  label: Max Distance (km)
+  dtype: float
+  default: 1.0
+
+asserts:
+- ${ distance_min < distance_max }
+- ${ -90.0 <= lat_ref <= 90.0 }
+- ${ -180.0 <= lon_ref <= 180.0 }
+
+inputs:
+- label: nmea_list
+  domain: message
+  dtype: message
+  optional: true
+- label: latlon
+  domain: message
+  dtype: message
+  optional: true
+- label: set_params
+  domain: message
+  dtype: message
+  optional: true
+
+
+outputs:
+- label: nmea_list
+  domain: message
+  dtype: message
+  optional: true
+- label: distance
+  domain: message
+  dtype: message
+  optional: true
+
+
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1
