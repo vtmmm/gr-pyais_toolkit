@@ -22,7 +22,16 @@ add_subdirectory(bindings)
 GR_PYTHON_INSTALL(
     FILES
     __init__.py
-    DESTINATION ${GR_PYTHON_DIR}/gnuradio/pyais_toolkit
+    message_type_18.py
+    message_type_19.py
+    message_type_1.py
+    message_type_21.py
+    message_type_27.py
+    message_type_4.py
+    message_type_5.py
+    message_type_6.py
+    message_type_8.py
+    message_type_9.py DESTINATION ${GR_PYTHON_DIR}/gnuradio/pyais_toolkit
 )
 
 ########################################################################

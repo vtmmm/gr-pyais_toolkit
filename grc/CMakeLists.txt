@@ -7,5 +7,14 @@
 #
 
 install(FILES
-    DESTINATION share/gnuradio/grc/blocks
+    pyais_toolkit_message_type_18.block.yml
+    pyais_toolkit_message_type_19.block.yml
+    pyais_toolkit_message_type_1.block.yml
+    pyais_toolkit_message_type_21.block.yml
+    pyais_toolkit_message_type_27.block.yml
+    pyais_toolkit_message_type_4.block.yml
+    pyais_toolkit_message_type_5.block.yml
+    pyais_toolkit_message_type_6.block.yml
+    pyais_toolkit_message_type_8.block.yml
+    pyais_toolkit_message_type_9.block.yml DESTINATION share/gnuradio/grc/blocks
 )

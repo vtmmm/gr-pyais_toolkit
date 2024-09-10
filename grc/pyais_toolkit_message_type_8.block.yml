@@ -1,0 +1,62 @@
+id: pyais_toolbox_message_type_8
+label: Message Type 8 (Binary broadcast message)
+category: '[pyais_toolbox]/Message Generators'
+
+templates:
+  imports: from gnuradio import pyais_toolbox
+  make: pyais_toolbox.message_type_8(${mmsi}, ${data}, ${dac}, ${fid})
+
+#  Make one 'parameters' list entry for every parameter you want settable from the GUI.
+#     Keys include:
+#     * id (makes the value accessible as keyname, e.g. in the make entry)
+#     * label (label shown in the GUI)
+#     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#     * default
+parameters:
+- id: mmsi
+  label: MMSI
+  dtype: string
+  default: '338123456'
+- id: data
+  label: Data (bytes)
+  dtype: byte
+  default: b'hello'
+- id: dac
+  label: DAC
+  dtype: int
+  default: 0
+- id: fid
+  label: FID
+  dtype: int
+  default: 0
+
+#  Make one 'inputs' list entry per input and one 'outputs' list entry per output.
+#  Keys include:
+#      * label (an identifier for the GUI)
+#      * domain (optional - stream or message. Default is stream)
+#      * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#      * vlen (optional - data stream vector length. Default is 1)
+#      * optional (optional - set to 1 for optional inputs. Default is 0)
+inputs:
+- label: latlon
+  domain: message
+  dtype: message
+  optional: True
+- label: set_params
+  domain: message
+  dtype: message
+  optional: True
+- label: payload
+  domain: message
+  dtype: message
+  optional: True
+
+outputs:
+- label: nmea_list
+  domain: message
+  dtype: message
+  optional: True
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

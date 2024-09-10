@@ -1,0 +1,152 @@
+id: pyais_toolbox_message_type_19
+label: Message Type 19 (Class B Extended)
+category: '[pyais_toolbox]/Message Generators'
+
+templates:
+  imports: from gnuradio import pyais_toolbox
+  make: pyais_toolbox.message_type_19(${mmsi}, ${accuracy}, ${assigned}, ${course}, ${dte}, ${epfd}, ${heading}, ${lat}, ${lon}, ${raim}, ${repeat}, ${reserved_1}, ${reserved_2}, ${second}, ${ship_type}, ${shipname}, ${spare_1}, ${speed}, ${to_bow}, ${to_port}, ${to_stern}, ${to_starboard})
+
+#  Make one 'parameters' list entry for every parameter you want settable from the GUI.
+#     Keys include:
+#     * id (makes the value accessible as keyname, e.g. in the make entry)
+#     * label (label shown in the GUI)
+#     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#     * default
+parameters:
+- id: mmsi
+  label: MMSI
+  dtype: string
+  default: '338123456'
+- id: lat
+  label: Lat
+  dtype: float
+  default: 0.0
+- id: lon
+  label: Lon
+  dtype: float
+  default: 0.0
+- id: course
+  label: Course
+  dtype: int
+  default: 0
+- id: heading
+  label: Heading
+  dtype: int
+  default: 0
+- id: speed
+  label: Speed
+  dtype: int
+  default: 0
+- id: ship_type
+  label: Ship Type
+  dtype: int
+  default: 0
+- id: shipname
+  label: Ship Name
+  dtype: string
+  default: 0
+- id: accuracy
+  label: Accuracy
+  dtype: int
+  default: 0
+  hide: part
+- id: dte
+  label: DTE
+  dtype: int
+  default: 0
+  hide: part
+- id: assigned
+  label: Assigned
+  dtype: int
+  default: 0
+  hide: part
+- id: epfd
+  label: EPFD
+  dtype: int
+  default: 0
+  hide: part
+- id: raim
+  label: RAIM
+  dtype: int
+  default: 0
+  hide: part
+- id: repeat
+  label: Repeat
+  dtype: int
+  default: 0
+  hide: part
+- id: reserved_1
+  label: reserved_1
+  dtype: int
+  default: 0
+  hide: part
+- id: reserved_2
+  label: reserved_2
+  dtype: int
+  default: 0
+  hide: part
+- id: spare_1
+  label: spare_1
+  dtype: raw
+  default: b''
+  hide: part
+- id: second
+  label: second
+  dtype: int
+  default: 0
+  hide: part
+- id: to_port
+  label: To Port
+  dtype: int
+  default: 0
+  hide: part
+- id: to_stern
+  label: To Stern
+  dtype: int
+  default: 0
+  hide: part
+- id: to_starboard
+  label: To Starboard
+  dtype: int
+  default: 0
+  hide: part
+- id: to_bow
+  label: To Bow
+  dtype: int
+  default: 0
+  hide: part
+
+#  Make one 'inputs' list entry per input and one 'outputs' list entry per output.
+#  Keys include:
+#      * label (an identifier for the GUI)
+#      * domain (optional - stream or message. Default is stream)
+#      * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#      * vlen (optional - data stream vector length. Default is 1)
+#      * optional (optional - set to 1 for optional inputs. Default is 0)
+inputs:
+- label: latlon
+  domain: message
+  dtype: message
+  optional: true
+- label: latlon_vec
+  domain: message
+  dtype: message
+  optional: true
+- label: mmsi
+  domain: message
+  dtype: message
+  optional: true
+- label: set_params
+  domain: message
+  dtype: message
+  optional: true
+
+outputs:
+- label: nmea_list
+  domain: message
+  dtype: message
+  optional: true
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

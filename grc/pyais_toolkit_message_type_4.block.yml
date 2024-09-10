@@ -1,0 +1,107 @@
+id: pyais_toolbox_message_type_4
+label: Message Type 4 (Base station report)
+category: '[pyais_toolbox]/Message Generators'
+
+templates:
+  imports: from gnuradio import pyais_toolbox
+  make: pyais_toolbox.message_type_4(${mmsi})
+
+#  Make one 'parameters' list entry for every parameter you want settable from the GUI.
+#     Keys include:
+#     * id (makes the value accessible as keyname, e.g. in the make entry)
+#     * label (label shown in the GUI)
+#     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#     * default
+parameters:
+- id: mmsi
+  label: MMSI
+  dtype: string
+  default: '003381234'
+- id: lat
+  label: Latitude
+  dtype: float
+  default: 0.0
+- id: lon
+  label: Longitude
+  dtype: float
+  default: 0.0
+- id: year
+  label: Year
+  dtype: int
+  default: 1970
+- id: month
+  label: Month
+  dtype: int
+  default: 1
+- id: day
+  label: Day
+  dtype: int
+  default: 1
+- id: hour
+  label: Hour
+  dtype: int
+  default: 0
+- id: minute
+  label: Minute
+  dtype: int
+  default: 0
+- id: second
+  label: Second
+  dtype: int
+  default: 0 
+- id: accuracy
+  label: Accuracy
+  dtype: int
+  default: 0
+- id: epfd
+  label: EPFD
+  dtype: int
+  default: 0
+- id: is_itdma
+  label: ITDMA?
+  dtype: bool
+  default: False
+- id: is_sotdma
+  label: SOTDMA?
+  dtype: bool
+  default: True
+- id: radio
+  label: Radio
+  dtype: int
+  default: 0
+- id: raim
+  label: RAIM
+  dtype: int
+  default: 0
+- id: repeat
+  label: Repeat
+  dtype: int
+  default: 0
+- id: spare_1
+  label: Spare
+  dtype: string
+  default: ''
+
+inputs:
+- label: latlon
+  domain: message
+  dtype: message
+  optional: true
+- label: mmsi
+  domain: message
+  dtype: message
+  optional: true
+- label: set_params
+  domain: message
+  dtype: message
+  optional: true
+
+outputs:
+- label: nmea_list
+  domain: message
+  dtype: message
+  optional: true
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1
