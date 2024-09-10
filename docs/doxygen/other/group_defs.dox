@@ -1,0 +1,6 @@
+/*!
+ * \defgroup block GNU Radio PYAIS_TOOLKIT C++ Signal Processing Blocks
+ * \brief All C++ blocks that can be used from the PYAIS_TOOLKIT GNU Radio
+ *        module are listed here or in the subcategories below.
+ *
+ */
