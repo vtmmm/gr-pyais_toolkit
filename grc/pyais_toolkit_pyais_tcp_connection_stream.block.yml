@@ -1,10 +1,10 @@
-id: pyais_toolbox_pyais_tcp_connection_stream
+id: pyais_toolkit_pyais_tcp_connection_stream
 label: pyais TCP Connection Stream
-category: '[pyais_toolbox]/Utilities'
+category: '[pyais_toolkit]/Utilities'
 
 templates:
-  imports: from gnuradio import pyais_toolbox
-  make: pyais_toolbox.pyais_tcp_connection_stream(${ip}, ${port})
+  imports: from gnuradio import pyais_toolkit
+  make: pyais_toolkit.pyais_tcp_connection_stream(${ip}, ${port})
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:

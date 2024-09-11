@@ -1,10 +1,10 @@
-id: pyais_toolbox_message_type_5
+id: pyais_toolkit_message_type_5
 label: Message Type 5 (Ship static/voyage data)
-category: '[pyais_toolbox]/Message Generators'
+category: '[pyais_toolkit]/Message Generators'
 
 templates:
-  imports: from gnuradio import pyais_toolbox
-  make: pyais_toolbox.message_type_5(${mmsi}, ${callsign}, ${destination}, ${imo}, ${shipname}, ${ship_type})
+  imports: from gnuradio import pyais_toolkit
+  make: pyais_toolkit.message_type_5(${mmsi}, ${callsign}, ${destination}, ${imo}, ${shipname}, ${ship_type})
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:

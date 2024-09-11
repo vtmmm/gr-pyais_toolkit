@@ -1,10 +1,10 @@
-id: pyais_toolbox_message_type_1
+id: pyais_toolkit_message_type_1
 label: Message Type 1 (Class A Pos Report)
-category: '[pyais_toolbox]/Message Generators'
+category: '[pyais_toolkit]/Message Generators'
 
 templates:
-  imports: from gnuradio import pyais_toolbox
-  make: pyais_toolbox.message_type_1(${mmsi}, ${course}, ${heading}, ${latitude}, ${longitude})
+  imports: from gnuradio import pyais_toolkit
+  make: pyais_toolkit.message_type_1(${mmsi}, ${course}, ${heading}, ${latitude}, ${longitude})
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:

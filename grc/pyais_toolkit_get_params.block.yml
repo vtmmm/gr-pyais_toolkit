@@ -1,10 +1,10 @@
-id: pyais_toolbox_get_params
+id: pyais_toolkit_get_params
 label: Get Params
-category: '[pyais_toolbox]/Utilities'
+category: '[pyais_toolkit]/Utilities'
 
 templates:
-  imports: from gnuradio import pyais_toolbox
-  make: pyais_toolbox.get_params(${params})
+  imports: from gnuradio import pyais_toolkit
+  make: pyais_toolkit.get_params(${params})
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:

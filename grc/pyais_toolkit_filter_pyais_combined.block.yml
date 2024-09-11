@@ -1,10 +1,10 @@
-id: pyais_toolbox_filter_pyais_combined
+id: pyais_toolkit_filter_pyais_combined
 label: pyais Combined Filter
-category: '[pyais_toolbox]/Message Filters'
+category: '[pyais_toolkit]/Message Filters'
 
 templates:
-  imports: from gnuradio import pyais_toolbox
-  make: pyais_toolbox.filter_pyais_combined(${use_NoneFilter},${required_attributes},${use_MessageTypeFilter},${msg_types_kept},${use_DistanceFilter},${latlon_source},${lat_ref},${lon_ref},${distance_km},${use_GridFilter},${lat_min},${lat_max},${lon_min},${lon_max},${no_filter_policy})
+  imports: from gnuradio import pyais_toolkit
+  make: pyais_toolkit.filter_pyais_combined(${use_NoneFilter},${required_attributes},${use_MessageTypeFilter},${msg_types_kept},${use_DistanceFilter},${latlon_source},${lat_ref},${lon_ref},${distance_km},${use_GridFilter},${lat_min},${lat_max},${lon_min},${lon_max},${no_filter_policy})
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:

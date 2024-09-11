@@ -1,10 +1,10 @@
-id: pyais_toolbox_message_type_21
+id: pyais_toolkit_message_type_21
 label: Message Type 21 (Aids-to-Navigation)
-category: '[pyais_toolbox]/Message Generators'
+category: '[pyais_toolkit]/Message Generators'
 
 templates:
-  imports: from gnuradio import pyais_toolbox
-  make: pyais_toolbox.message_type_21(${mmsi}, ${aid_type}, ${virtual_aid}, ${name}, ${name_ext}, ${lat}, ${lon}, ${to_bow}, ${to_stern}, ${to_port}, ${to_starboard}, ${epfd}, ${off_position}, ${raim}, ${accuracy}, ${repeat}, ${reserved_1}, ${second}, ${assigned}, ${spare_1})
+  imports: from gnuradio import pyais_toolkit
+  make: pyais_toolkit.message_type_21(${mmsi}, ${aid_type}, ${virtual_aid}, ${name}, ${name_ext}, ${lat}, ${lon}, ${to_bow}, ${to_stern}, ${to_port}, ${to_starboard}, ${epfd}, ${off_position}, ${raim}, ${accuracy}, ${repeat}, ${reserved_1}, ${second}, ${assigned}, ${spare_1})
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:

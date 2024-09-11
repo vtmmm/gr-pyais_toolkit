@@ -1,10 +1,10 @@
-id: pyais_toolbox_strobe_random_latlon
+id: pyais_toolkit_strobe_random_latlon
 label: Random latlon (Radius)
-category: '[pyais_toolbox]/Strobes'
+category: '[pyais_toolkit]/Strobes'
 
 templates:
-  imports: from gnuradio import pyais_toolbox
-  make: pyais_toolbox.strobe_random_latlon(${interval}, ${lat_center}, ${lon_center}, ${offset}) 
+  imports: from gnuradio import pyais_toolkit
+  make: pyais_toolkit.strobe_random_latlon(${interval}, ${lat_center}, ${lon_center}, ${offset}) 
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:

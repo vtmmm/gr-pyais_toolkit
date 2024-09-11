@@ -1,10 +1,10 @@
-id: pyais_toolbox_get_latlon
+id: pyais_toolkit_get_latlon
 label: Get latlon
-category: '[pyais_toolbox]/Utilities'
+category: '[pyais_toolkit]/Utilities'
 
 templates:
-  imports: from gnuradio import pyais_toolbox
-  make: pyais_toolbox.get_latlon()
+  imports: from gnuradio import pyais_toolkit
+  make: pyais_toolkit.get_latlon()
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:

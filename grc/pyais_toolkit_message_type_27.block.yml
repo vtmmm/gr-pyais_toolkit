@@ -1,10 +1,10 @@
-id: pyais_toolbox_message_type_27
+id: pyais_toolkit_message_type_27
 label: Message Type 27 (Long Range Broadcast)
-category: '[pyais_toolbox]/Message Generators'
+category: '[pyais_toolkit]/Message Generators'
 
 templates:
-  imports: from gnuradio import pyais_toolbox
-  make: pyais_toolbox.message_type_27(${mmsi}, ${course}, ${heading}, ${lat}, ${lon}, ${speed}, ${accuracy}, ${gnss}, ${is_itdma}, ${is_sotdma}, ${maneuver}, ${radio}, ${raim}, ${repeat}, ${second}, ${spare_1})
+  imports: from gnuradio import pyais_toolkit
+  make: pyais_toolkit.message_type_27(${mmsi}, ${course}, ${heading}, ${lat}, ${lon}, ${speed}, ${accuracy}, ${gnss}, ${is_itdma}, ${is_sotdma}, ${maneuver}, ${radio}, ${raim}, ${repeat}, ${second}, ${spare_1})
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:

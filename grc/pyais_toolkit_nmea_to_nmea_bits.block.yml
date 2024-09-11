@@ -1,10 +1,10 @@
-id: pyais_toolbox_nmea_to_nmea_bits
+id: pyais_toolkit_nmea_to_nmea_bits
 label: NMEA to AIS Simulator (bits)
-category: '[pyais_toolbox]/Utilities'
+category: '[pyais_toolkit]/Utilities'
 
 templates:
-  imports: from gnuradio import pyais_toolbox
-  make: pyais_toolbox.nmea_to_nmea_bits()
+  imports: from gnuradio import pyais_toolkit
+  make: pyais_toolkit.nmea_to_nmea_bits()
 
 inputs:
 - label: nmea_list

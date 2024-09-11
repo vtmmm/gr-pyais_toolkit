@@ -1,10 +1,10 @@
-id: pyais_toolbox_filter_distance
+id: pyais_toolkit_filter_distance
 label: Distance Filter (WGS84)
-category: '[pyais_toolbox]/Message Filters'
+category: '[pyais_toolkit]/Message Filters'
 
 templates:
-  imports: from gnuradio import pyais_toolbox
-  make: pyais_toolbox.filter_distance(${lat_ref}, ${lon_ref}, ${distance_min}, ${distance_max})
+  imports: from gnuradio import pyais_toolkit
+  make: pyais_toolkit.filter_distance(${lat_ref}, ${lon_ref}, ${distance_min}, ${distance_max})
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:

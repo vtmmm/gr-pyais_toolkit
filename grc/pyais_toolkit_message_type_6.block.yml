@@ -1,10 +1,10 @@
-id: pyais_toolbox_message_type_6
+id: pyais_toolkit_message_type_6
 label: Message Type 6 (Addressed binary)
-category: '[pyais_toolbox]/Message Generators'
+category: '[pyais_toolkit]/Message Generators'
 
 templates:
-  imports: from gnuradio import pyais_toolbox
-  make: pyais_toolbox.message_type_6(${mmsi}, ${dest_mmsi}, ${data}, ${dac}, ${fid}, ${retransmit}, ${seqno})
+  imports: from gnuradio import pyais_toolkit
+  make: pyais_toolkit.message_type_6(${mmsi}, ${dest_mmsi}, ${data}, ${dac}, ${fid}, ${retransmit}, ${seqno})
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:

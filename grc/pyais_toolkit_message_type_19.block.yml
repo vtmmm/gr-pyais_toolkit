@@ -1,10 +1,10 @@
-id: pyais_toolbox_message_type_19
+id: pyais_toolkit_message_type_19
 label: Message Type 19 (Class B Extended)
-category: '[pyais_toolbox]/Message Generators'
+category: '[pyais_toolkit]/Message Generators'
 
 templates:
-  imports: from gnuradio import pyais_toolbox
-  make: pyais_toolbox.message_type_19(${mmsi}, ${accuracy}, ${assigned}, ${course}, ${dte}, ${epfd}, ${heading}, ${lat}, ${lon}, ${raim}, ${repeat}, ${reserved_1}, ${reserved_2}, ${second}, ${ship_type}, ${shipname}, ${spare_1}, ${speed}, ${to_bow}, ${to_port}, ${to_stern}, ${to_starboard})
+  imports: from gnuradio import pyais_toolkit
+  make: pyais_toolkit.message_type_19(${mmsi}, ${accuracy}, ${assigned}, ${course}, ${dte}, ${epfd}, ${heading}, ${lat}, ${lon}, ${raim}, ${repeat}, ${reserved_1}, ${reserved_2}, ${second}, ${ship_type}, ${shipname}, ${spare_1}, ${speed}, ${to_bow}, ${to_port}, ${to_stern}, ${to_starboard})
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:

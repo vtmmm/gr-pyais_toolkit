@@ -1,10 +1,10 @@
-id: pyais_toolbox_nmea_bytes_to_strings
+id: pyais_toolkit_nmea_bytes_to_strings
 label: NMEA Bytes to Strings
-category: '[pyais_toolbox]/Utilities'
+category: '[pyais_toolkit]/Utilities'
 
 templates:
-  imports: from gnuradio import pyais_toolbox
-  make: pyais_toolbox.nmea_bytes_to_strings()
+  imports: from gnuradio import pyais_toolkit
+  make: pyais_toolkit.nmea_bytes_to_strings()
 
 inputs:
 - label: nmea_bytes

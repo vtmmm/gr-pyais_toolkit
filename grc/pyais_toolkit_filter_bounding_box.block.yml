@@ -1,10 +1,10 @@
-id: pyais_toolbox_filter_bounding_box
+id: pyais_toolkit_filter_bounding_box
 label: Bounding Box Filter
-category: '[pyais_toolbox]/Message Filters'
+category: '[pyais_toolkit]/Message Filters'
 
 templates:
-  imports: from gnuradio import pyais_toolbox
-  make: pyais_toolbox.filter_bounding_box(${lat_min}, ${lat_max}, ${lon_min}, ${lon_max})
+  imports: from gnuradio import pyais_toolkit
+  make: pyais_toolkit.filter_bounding_box(${lat_min}, ${lat_max}, ${lon_min}, ${lon_max})
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:
