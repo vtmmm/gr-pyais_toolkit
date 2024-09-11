@@ -45,4 +45,5 @@ from .nmea_to_opencpn import nmea_to_opencpn
 from .pyais_tcp_connection_stream import pyais_tcp_connection_stream
 from .nmea_bytes_to_strings import nmea_bytes_to_strings
 from .nmea_strings_to_bytes import nmea_strings_to_bytes
+from .strobe_latlon_moving import strobe_latlon_moving
 #

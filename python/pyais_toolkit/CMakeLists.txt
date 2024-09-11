@@ -46,7 +46,8 @@ GR_PYTHON_INSTALL(
     nmea_to_opencpn.py
     pyais_tcp_connection_stream.py
     nmea_bytes_to_strings.py
-    nmea_strings_to_bytes.py DESTINATION ${GR_PYTHON_DIR}/gnuradio/pyais_toolkit
+    nmea_strings_to_bytes.py
+    strobe_latlon_moving.py DESTINATION ${GR_PYTHON_DIR}/gnuradio/pyais_toolkit
 )
 
 ########################################################################

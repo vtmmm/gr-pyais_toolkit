@@ -31,5 +31,6 @@ install(FILES
     pyais_toolkit_nmea_to_opencpn.block.yml
     pyais_toolkit_pyais_tcp_connection_stream.block.yml
     pyais_toolkit_nmea_bytes_to_strings.block.yml
-    pyais_toolkit_nmea_strings_to_bytes.block.yml DESTINATION share/gnuradio/grc/blocks
+    pyais_toolkit_nmea_strings_to_bytes.block.yml
+    pyais_toolkit_strobe_latlon_moving.block.yml DESTINATION share/gnuradio/grc/blocks
 )

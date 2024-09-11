@@ -1,0 +1,61 @@
+id: pyais_toolkit_strobe_latlon_moving
+label: latlon Simulator (Pos/Bearing/Speed)
+category: '[pyais_toolkit]/Strobes'
+
+templates:
+  imports: from gnuradio import pyais_toolkit
+  make: pyais_toolkit.strobe_latlon_moving(${lat_ref}, ${lon_ref}, ${bearing}, ${speed}, ${interval})
+
+#  Make one 'parameters' list entry for every parameter you want settable from the GUI.
+#     Keys include:
+#     * id (makes the value accessible as keyname, e.g. in the make entry)
+#     * label (label shown in the GUI)
+#     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#     * default
+parameters:
+- id: interval
+  label: Interval (s)
+  dtype: float
+  default: 1.0
+- id: lat_ref
+  label: Reference Lat
+  dtype: float
+  default: 0.0
+- id: lon_ref
+  label: Reference Lon
+  dtype: float
+  default: 0.0
+- id: bearing
+  label: Bearing
+  dtype: int
+  default: 0
+- id: speed
+  label: Speed (kn)
+  dtype: float
+  default: 0.0
+
+asserts:
+- ${ interval > 0.01 }
+- ${ 0 <= bearing < 360 }
+- ${ -90.0 <= lat_ref <= 90.0 }
+- ${ -180.0 <= lon_ref <= 180.0 }
+
+inputs:
+- label: latlon
+  domain: message
+  dtype: message
+  optional: true
+- label: set_params
+  domain: message
+  dtype: message
+  optional: true
+
+outputs:
+- label: latlon
+  domain: message
+  dtype: message
+  optional: true
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1
