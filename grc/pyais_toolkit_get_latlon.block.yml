@@ -1,0 +1,29 @@
+id: pyais_toolbox_get_latlon
+label: Get latlon
+category: '[pyais_toolbox]/Utilities'
+
+templates:
+  imports: from gnuradio import pyais_toolbox
+  make: pyais_toolbox.get_latlon()
+
+#  Make one 'parameters' list entry for every parameter you want settable from the GUI.
+#     Keys include:
+#     * id (makes the value accessible as keyname, e.g. in the make entry)
+#     * label (label shown in the GUI)
+#     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#     * default
+inputs:
+- label: nmea_list
+  domain: message
+  dtype: message
+  optional: true
+
+outputs:
+- label: latlon
+  domain: message
+  dtype: message
+  optional: true
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

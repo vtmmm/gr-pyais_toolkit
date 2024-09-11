@@ -65,7 +65,3 @@ outputs:
 #  'file_format' specifies the version of the GRC yml format used in the file
 #  and should usually not be changed.
 file_format: 1
-
-#  'file_format' specifies the version of the GRC yml format used in the file
-#  and should usually not be changed.
-file_format: 1

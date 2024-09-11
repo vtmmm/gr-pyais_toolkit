@@ -23,5 +23,13 @@ install(FILES
     pyais_toolkit_filter_pyais_combined.block.yml
     pyais_toolkit_filter_param_dictionary.block.yml
     pyais_toolkit_filter_bounding_box.block.yml
-    pyais_toolkit_filter_distance.block.yml DESTINATION share/gnuradio/grc/blocks
+    pyais_toolkit_filter_distance.block.yml
+    pyais_toolkit_get_params.block.yml
+    pyais_toolkit_get_latlon.block.yml
+    pyais_toolkit_hex_to_bytes.block.yml
+    pyais_toolkit_nmea_to_nmea_bits.block.yml
+    pyais_toolkit_nmea_to_opencpn.block.yml
+    pyais_toolkit_pyais_tcp_connection_stream.block.yml
+    pyais_toolkit_nmea_bytes_to_strings.block.yml
+    pyais_toolkit_nmea_strings_to_bytes.block.yml DESTINATION share/gnuradio/grc/blocks
 )

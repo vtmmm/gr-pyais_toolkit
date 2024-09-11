@@ -38,7 +38,15 @@ GR_PYTHON_INSTALL(
     filter_pyais_combined.py
     filter_param_dictionary.py
     filter_bounding_box.py
-    filter_distance.py DESTINATION ${GR_PYTHON_DIR}/gnuradio/pyais_toolkit
+    filter_distance.py
+    get_params.py
+    get_latlon.py
+    hex_to_bytes.py
+    nmea_to_nmea_bits.py
+    nmea_to_opencpn.py
+    pyais_tcp_connection_stream.py
+    nmea_bytes_to_strings.py
+    nmea_strings_to_bytes.py DESTINATION ${GR_PYTHON_DIR}/gnuradio/pyais_toolkit
 )
 
 ########################################################################

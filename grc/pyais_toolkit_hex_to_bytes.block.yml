@@ -1,0 +1,35 @@
+id: pyais_toolbox_hex_to_bytes
+label: Hex to Bytes
+category: '[pyais_toolbox]/Utilities'
+
+templates:
+  imports: from gnuradio import pyais_toolbox
+  make: pyais_toolbox.hex_to_bytes(${data_key})
+
+#  Make one 'parameters' list entry for every parameter you want settable from the GUI.
+#     Keys include:
+#     * id (makes the value accessible as keyname, e.g. in the make entry)
+#     * label (label shown in the GUI)
+#     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#     * default
+parameters:
+- id: data_key
+  label: Data key
+  dtype: string
+  default: 'data'
+
+inputs:
+- label: dict
+  domain: message
+  dtype: message
+  optional: true
+
+outputs:
+- label: bytes
+  domain: message
+  dtype: message
+  optional: true
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1
