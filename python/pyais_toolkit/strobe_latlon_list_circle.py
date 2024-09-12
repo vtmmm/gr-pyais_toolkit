@@ -17,8 +17,11 @@ from threading import Thread
 
 class strobe_latlon_list_circle(gr.sync_block):
     """
-    docstring for block strobe_latlon_list_circle
-    """
+    Emit a message containing a vector of latlons.
+
+    If latlon source is set to Message, this will not emit anything until the lat_ref and lat_ref are set via the latlon input.
+
+:   """
     def __init__(self,interval=1,initial_delay=0.0,latlon_source='Manual Entry',lat_ref=0.0,lon_ref=0.0,radius=100,num_points=32):
         gr.sync_block.__init__(self,
             name="strobe_latlon_list_circle",

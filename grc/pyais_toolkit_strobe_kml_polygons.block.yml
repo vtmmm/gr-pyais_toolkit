@@ -1,0 +1,61 @@
+id: pyais_toolkit_strobe_kml_polygons
+label: Strobe KML Polygons
+category: '[pyais_toolkit]/Strobes'
+
+templates:
+  imports: from gnuradio import pyais_toolkit
+  make: pyais_toolkit.strobe_kml_polygons(${filename}, ${interval}, ${initial_delay}, ${repeat_points}, ${random_order}, ${lat_offset}, ${lon_offset})
+
+#  Make one 'parameters' list entry for every parameter you want settable from the GUI.
+#     Keys include:
+#     * id (makes the value accessible as keyname, e.g. in the make entry)
+#     * label (label shown in the GUI)
+#     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#     * default
+parameters:
+- id: filename
+  label: Filename
+  dtype: string
+  default: ''
+- id: interval
+  label: Interval (s)
+  dtype: float
+  default: 1.0
+- id: initial_delay
+  label: initial_delay (s)
+  dtype: float
+  default: 0.0
+- id: repeat_points
+  label: Repeat points
+  dtype: int
+  default: 5
+- id: random_order
+  label: Random Order
+  dtype: enum
+  default: 'False'
+  options: ['True', 'False']
+  option_labels: ['True', 'False']
+- id: lat_offset
+  label: Lat offset
+  dtype: float
+  default: 0.0
+- id: lon_offset
+  label: Lon offset
+  dtype: float
+  default: 0.0
+
+inputs:
+- label: set_params
+  domain: message
+  dtype: message
+  optional: true
+
+outputs:
+- label: latlon_vec
+  domain: message
+  dtype: message
+  optional: true
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1
