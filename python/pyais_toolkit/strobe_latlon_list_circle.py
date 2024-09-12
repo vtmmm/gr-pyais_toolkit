@@ -19,7 +19,7 @@ class strobe_latlon_list_circle(gr.sync_block):
     """
     docstring for block strobe_latlon_list_circle
     """
-    def __init__(self,interval=1,latlon_source='Manual Entry',lat_ref=0.0,lon_ref=0.0,radius=100,num_points=32):
+    def __init__(self,interval=1,initial_delay=0.0,latlon_source='Manual Entry',lat_ref=0.0,lon_ref=0.0,radius=100,num_points=32):
         gr.sync_block.__init__(self,
             name="strobe_latlon_list_circle",
             in_sig=None,
@@ -27,6 +27,7 @@ class strobe_latlon_list_circle(gr.sync_block):
 
         # Store variables
         self.interval = interval
+        self.initial_delay = initial_delay
         self.latlon_source = latlon_source
         self.lat_ref = lat_ref
         self.lon_ref = lon_ref
@@ -44,13 +45,14 @@ class strobe_latlon_list_circle(gr.sync_block):
         self.set_msg_handler(pmt.intern('latlon'), self.handle_latlon)
         self.set_msg_handler(pmt.intern('set_params'), self.handle_set_params)
 
+        # Set up circle
+        self.define_points()
+
         # Thread for strobing
         self.strobe_thread = Thread(target=self._strobe)
         self.strobe_thread.daemon = True
         self.strobe_thread.start()
 
-        # Set up circle
-        self.define_points()
 
     def define_points(self):
         # storing the geopy Points in case we want to do anything else with them
@@ -77,10 +79,12 @@ class strobe_latlon_list_circle(gr.sync_block):
         return
 
     def _strobe(self):
+        # Sleep for initial delay
+        sleep(self.initial_delay)
+
         while True:
             if not self.pmt_vector:
-                print("PMT Vector not initialized...")
-                sleep(0.1)
+                sleep(0.05)
                 continue
             if self.latlon_source=='latlon MSG Input' and not self.latlon_initialized:
                 sleep(self.interval)

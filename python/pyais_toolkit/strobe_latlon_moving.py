@@ -27,18 +27,19 @@ class strobe_latlon_moving(gr.sync_block):
     - Output the bearing as a dict that can be used for set_params (for course or heading)
     - Accept an offset to the heading or speed that can be applied
     """
-    def __init__(self, lat_ref=0.0,lon_ref=0.0,bearing=0,speed=10,interval=1):
+    def __init__(self,interval=1.0,initial_delay=0.0,lat_ref=0.0,lon_ref=0.0,bearing=0,speed=10):
         gr.sync_block.__init__(self,
             name="strobe_latlon_moving",
             in_sig=None,
             out_sig=None)
 
         # Store variables
+        self.interval = interval
+        self.initial_delay = initial_delay
         self.lat_ref = self.lat_new = lat_ref
         self.lon_ref = self.lon_new = lon_ref
         self.bearing = bearing
         self.speed = speed
-        self.interval = interval
         self.latlon_received = False  # Not yet used
 
         # Message ports
@@ -70,15 +71,18 @@ class strobe_latlon_moving(gr.sync_block):
         return position.latitude, position.longitude
 
     def _strobe(self):
+        # Sleep for initial delay
+        sleep(self.initial_delay)
+
         while True:
-            # Emit immediately so first message is the reference point 
+            sleep(self.interval)
+            # First message is the reference point 
             lat_dict = pmt.dict_add( pmt.make_dict(), pmt.intern("lat"), pmt.from_float(self.lat_new))
             latlon_dict = pmt.dict_add(lat_dict, pmt.intern("lon"), pmt.from_float(self.lon_new))
             self.message_port_pub(pmt.intern('latlon'), pmt.cons(latlon_dict, pmt.PMT_NIL))
 
             self.lat_new, self.lon_new = self.update_position(self.lat_new, self.lon_new, self.speed, self.bearing, self.interval)
 
-            sleep(self.interval)
 
     def start(self):
         return super().start()

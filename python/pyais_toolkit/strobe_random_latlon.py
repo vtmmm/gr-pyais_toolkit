@@ -24,7 +24,7 @@ class strobe_random_latlon(gr.sync_block):
 
     Accepts latlon to set a new location.
     """
-    def __init__(self, interval=1.0, lat_center=0, lon_center=0, offset=0):
+    def __init__(self, interval=1.0,initial_delay=0.0,lat_center=0, lon_center=0, offset=0):
         gr.sync_block.__init__(self,
             name="strobe_random_latlon",
             in_sig=None,
@@ -32,6 +32,7 @@ class strobe_random_latlon(gr.sync_block):
 
         # Store variables
         self.interval = interval
+        self.initial_delay = initial_delay
         self.lat_center = lat_center
         self.lon_center = lon_center
         self.offset = offset
@@ -51,6 +52,9 @@ class strobe_random_latlon(gr.sync_block):
         self.strobe_thread.start()
 
     def _strobe(self):
+        # Sleep for initial delay
+        sleep(self.initial_delay)
+
         while True:
             sleep(self.interval)
 
