@@ -1,10 +1,10 @@
 id: pyais_toolkit_strobe_latlon_list_circle
-label: latlon List Strobe (Circle)
+label: Strobe latlon List (Circle)
 category: '[pyais_toolkit]/Strobes'
 
 templates:
   imports: from gnuradio import pyais_toolkit
-  make: pyais_toolkit.strobe_latlon_list_circle(${interval},${latlon_source},${lat_ref}, ${lon_ref}, ${radius}, ${num_points})
+  make: pyais_toolkit.strobe_latlon_list_circle(${interval},${initial_delay},${latlon_source},${lat_ref}, ${lon_ref}, ${radius}, ${num_points})
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:
@@ -15,8 +15,12 @@ templates:
 parameters:
 - id: interval
   label: Interval (s)
-  dtype: int
-  default: 1
+  dtype: float
+  default: 1.0
+- id: initial_delay
+  label: Initial delay (s)
+  dtype: float
+  default: 0.0
 - id: latlon_source
   label: LatLon Ref Source
   dtype: string

@@ -1,10 +1,10 @@
 id: pyais_toolkit_strobe_latlon_moving
-label: latlon Simulator (Pos/Bearing/Speed)
+label: Strobe latlon (Moving)
 category: '[pyais_toolkit]/Strobes'
 
 templates:
   imports: from gnuradio import pyais_toolkit
-  make: pyais_toolkit.strobe_latlon_moving(${lat_ref}, ${lon_ref}, ${bearing}, ${speed}, ${interval})
+  make: pyais_toolkit.strobe_latlon_moving(${interval},${initial_delay},${lat_ref}, ${lon_ref}, ${bearing}, ${speed})
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:
@@ -17,6 +17,10 @@ parameters:
   label: Interval (s)
   dtype: float
   default: 1.0
+- id: initial_delay
+  label: Initial delay (s)
+  dtype: float
+  default: 0.0
 - id: lat_ref
   label: Reference Lat
   dtype: float

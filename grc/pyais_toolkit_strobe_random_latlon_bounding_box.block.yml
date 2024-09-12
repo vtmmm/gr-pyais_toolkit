@@ -1,10 +1,10 @@
 id: pyais_toolkit_strobe_random_latlon_bounding_box
-label: Random latlon (Bounding Box)
+label: Strobe Random latlon (Bounding Box)
 category: '[pyais_toolkit]/Strobes'
 
 templates:
   imports: from gnuradio import pyais_toolkit
-  make: pyais_toolkit.strobe_random_latlon_bounding_box(${interval}, ${lat_min}, ${lat_max}, ${lon_min}, ${lon_max})
+  make: pyais_toolkit.strobe_random_latlon_bounding_box(${interval}, ${initial_delay}, ${lat_min}, ${lat_max}, ${lon_min}, ${lon_max})
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:
@@ -16,7 +16,11 @@ parameters:
 - id: interval
   label: Interval (s)
   dtype: float
-  default: 1
+  default: 1.0
+- id: initial_delay
+  label: Initial delay (s)
+  dtype: float
+  default: 0.0
 - id: lat_min
   label: Min Lat
   dtype: float
