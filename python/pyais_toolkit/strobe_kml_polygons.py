@@ -38,7 +38,7 @@ class strobe_kml_polygons(gr.sync_block):
         self.filename = filename
         self.interval = interval
         self.initial_delay = initial_delay
-        self.repeat_points = 5
+        self.repeat_points = repeat_points
         self.random_order = random_order
         self.lat_offset = lat_offset
         self.lon_offset = lon_offset
@@ -84,12 +84,13 @@ class strobe_kml_polygons(gr.sync_block):
                     (float(lat), float(lon))
                     for lon, lat, *_ in (coord.split(',')[:2] for coord in coords_text.split())
                     ]
-                repeated_coord_pairs = [item for item in coord_pairs for _ in range(self.repeat_points)]
                 polygons.append(coord_pairs)
         
         if self.random_order == 'True':
             shuffle(polygons)
         self.polygons = polygons
+        print(f"polygons:")
+        print(self.polygons)
 
         return
 
@@ -112,7 +113,8 @@ class strobe_kml_polygons(gr.sync_block):
                     # Add latlon dictionary to vector
                     pmt.vector_set(pmt_vector, i, latlon_dict)
                 index += 1
-                self.message_port_pub(pmt.intern('latlon_vec'), pmt.cons(pmt.make_dict(), pmt_vector))
+                for _ in range(self.repeat_points):
+                    self.message_port_pub(pmt.intern('latlon_vec'), pmt.cons(pmt.make_dict(), pmt_vector))
             sleep(self.interval)
 
     def start(self):

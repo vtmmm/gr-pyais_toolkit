@@ -97,3 +97,4 @@ These are used to interface with `gr-ais` and `gr-pyais_json`.
 
 # TODO:
 - "max strobes" parameter for strobe blocks, so they stop emitting after a configurable number of messages
+- Strobe KML Polygons: print length of longest polygon, and time to complete based on interval
