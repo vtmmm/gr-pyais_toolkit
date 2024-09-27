@@ -2,6 +2,8 @@
 
 The goal of these blocks is to make it easier to experiment with `pyais` in a modular fashion within GNU Radio.
 
+Warning: this is not in a 'finished' state, so some things may not work.
+
 # Requirements
 
 * GNU Radio `3.10.11.0` or later
