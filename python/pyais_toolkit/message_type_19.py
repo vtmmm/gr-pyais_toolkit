@@ -17,7 +17,7 @@ from pyais.encode import encode_msg
 
 class message_type_19(gr.sync_block):
     """
-    Extended Class B Equipment Position Report
+    Extended Class B Equipment Position Report (Legacy)
 \n
     Sample input on latlon to generate message:
     latlon: (((lat . 30)(lon . -100)))
