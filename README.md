@@ -110,6 +110,7 @@ It can be used with:
 - Nick Foster and bkerler for gr-ais and its GR 3.10 support
 - Mictronics for ais-simulator and gr-ais_simulator
 - muaddib1984 for gr-pyais_json
+- GNU Radio community
 
 # TODO:
 - "max strobes" parameter for strobe blocks, so they stop emitting after a configurable number of messages
