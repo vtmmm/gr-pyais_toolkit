@@ -113,3 +113,5 @@ It can be used with:
 - "max strobes" parameter for strobe blocks, so they stop emitting after a configurable number of messages
 - Strobe KML Polygons: print length of longest polygon, and time to complete based on interval
 - Improve per-block documentation and its formatting
+- Add Message Generator blocks for more message types
+- Add support for latlon_vec to more Message Generators
