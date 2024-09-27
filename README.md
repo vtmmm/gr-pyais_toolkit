@@ -12,6 +12,8 @@ Warning: this is not in a 'finished' state, so some things may not work.
 
 GNU Radio `3.10.11.0` or later is required for flowgraphs that make use of the `Burst to Stream` block for generating continuous IQ files containing AIS bursts. If you only need the bursts, you can use an earlier version.
 
+`gr-ais_simulator` is only necessary if you want to generate IQ. If you only want to experiment with NMEA messages, it is not necessary.
+
 Other versions of `pyais` have not been tested.
 
 # Types of Blocks
