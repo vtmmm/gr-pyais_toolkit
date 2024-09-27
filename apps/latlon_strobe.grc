@@ -1,0 +1,187 @@
+options:
+  parameters:
+    author: michael morrison
+    catch_exceptions: 'True'
+    category: '[pyais_toolbox]/Hier'
+    cmake_opt: ''
+    comment: 'https://wiki.gnuradio.org/index.php/Polymorphic_Types_(PMTs)
+
+
+      A ''cons'' is a pair consisting of a ''car'' and ''cdr''.
+
+
+      The pmt ''intern'' is another way of saying ''string to pmt symbol''
+
+
+      You must copy the resulting .py to ~/.grc_gnuradio
+
+      https://wiki.gnuradio.org/index.php/Hier_Blocks_and_Parameters'
+    copyright: ''
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: hb
+    hier_block_src_path: '.:'
+    id: ais_latlon_strobe
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: AIS LatLon Strobe
+    window_size: (1000,1000)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: empty_dict
+  id: variable
+  parameters:
+    comment: ''
+    value: pmt.make_dict()
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [544, 28.0]
+    rotation: 0
+    state: enabled
+- name: latitude_dict
+  id: variable
+  parameters:
+    comment: ''
+    value: pmt.dict_add(empty_dict, pmt.intern("lat"), pmt.from_float(lat))
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [640, 28.0]
+    rotation: 0
+    state: enabled
+- name: latitude_longitude_dictionary
+  id: variable
+  parameters:
+    comment: ''
+    value: pmt.dict_add(latitude_dict, pmt.intern("lon"), pmt.from_float(lon))
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [752, 28.0]
+    rotation: 0
+    state: enabled
+- name: blocks_message_strobe_0
+  id: blocks_message_strobe
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: 'Sends a PDU which is a pmt.cons:
+
+      - car: Metadata which is a dictionary
+
+      - cdr: Data which is null (PMT_NIL)
+
+
+      Metadata:
+
+      - Dictionary contains two key:value pairs'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    msg: pmt.cons(latitude_longitude_dictionary, pmt.PMT_NIL)
+    period: '1000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [440, 284.0]
+    rotation: 0
+    state: enabled
+- name: lat
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: Latitude
+    short_id: ''
+    type: eng_float
+    value: '30'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [304, 12.0]
+    rotation: 0
+    state: enabled
+- name: lon
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: Longitude
+    short_id: ''
+    type: eng_float
+    value: '-100'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [408, 12.0]
+    rotation: 0
+    state: enabled
+- name: pad_sink_0
+  id: pad_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    label: latlon
+    num_streams: '1'
+    optional: 'False'
+    type: message
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [744, 292.0]
+    rotation: 0
+    state: enabled
+- name: pad_source_0
+  id: pad_source
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    label: latlon
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_streams: '1'
+    optional: 'True'
+    type: message
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [232, 292.0]
+    rotation: 0
+    state: enabled
+
+connections:
+- [blocks_message_strobe_0, strobe, pad_sink_0, in]
+- [pad_source_0, out, blocks_message_strobe_0, set_msg]
+
+metadata:
+  file_format: 1
