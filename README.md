@@ -118,3 +118,4 @@ It can be used with:
 - Improve per-block documentation and its formatting
 - Add Message Generator blocks for more message types
 - Add support for latlon_vec to more Message Generators
+- Add actual logging instead of random print statements
