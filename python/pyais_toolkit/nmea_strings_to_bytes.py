@@ -36,7 +36,6 @@ class nmea_strings_to_bytes(gr.sync_block):
     def handle_nmea_list(self, msg):
         if msg is None:
             return
-
         PMT_msg = pmt.to_python(msg)
         if type(PMT_msg) is not list:
             return
@@ -48,4 +47,8 @@ class nmea_strings_to_bytes(gr.sync_block):
 
             self.message_port_pub(pmt.intern('nmea_bytes'), pmt.cons(pmt.PMT_NIL, pmt_array))
 
+        return
+
+    def handle_nmea_bytes(self, msg):
+        print("NOT YET IMPLEMENTED")
         return
