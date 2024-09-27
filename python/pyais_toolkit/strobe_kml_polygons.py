@@ -81,7 +81,7 @@ class strobe_kml_polygons(gr.sync_block):
                 coords_text = coordinates.text.strip()
                 # Omitting altitude
                 coord_pairs = [
-                    (float(lat), float(lon))
+                    (float(lat)+self.lat_offset, float(lon)+self.lon_offset)
                     for lon, lat, *_ in (coord.split(',')[:2] for coord in coords_text.split())
                     ]
                 polygons.append(coord_pairs)
@@ -89,8 +89,10 @@ class strobe_kml_polygons(gr.sync_block):
         if self.random_order == 'True':
             shuffle(polygons)
         self.polygons = polygons
-        print(f"polygons:")
-        print(self.polygons)
+        #print(f"polygons:")
+        #print(self.polygons)
+        longest_length = len(max(polygons, key=len))
+        print(f"Longest polygone is {longest_length} points. Requires {self.interval*longest_length + self.initial_delay}s to complete.")
 
         return
 
