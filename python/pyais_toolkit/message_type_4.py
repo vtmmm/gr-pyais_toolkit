@@ -16,6 +16,8 @@ from pyais.encode import encode_msg
 
 class message_type_4(gr.sync_block):
     """
+    Message 4: Base station report
+    \n
     Sample input on latlon to generate message:
     latlon: (((lat . 30)(lon . -100)))
 
