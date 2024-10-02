@@ -119,3 +119,4 @@ It can be used with:
 - Add Message Generator blocks for more message types
 - Add support for latlon_vec to more Message Generators
 - Add actual logging instead of random print statements
+- Make capitalization consistent across block names (GRC labels)
