@@ -1,0 +1,158 @@
+id: pyais_toolkit_message_type_22
+label: Message Type 22 (Channel management)
+category: '[pyais_toolkit]/Message Generators'
+
+templates:
+  imports: from gnuradio import pyais_toolkit
+  make: pyais_toolkit.message_type_22(${mmsi}, ${addressed}, ${channel_a}, ${channel_b}, ${txrx}, ${power}, ${ne_lat}, ${ne_lon}, ${sw_lat}, ${sw_lon}, ${dest1}, ${empty_1}, ${dest2}, ${empty_2}, ${band_a}, ${band_b}, ${zonesize}, ${repeat}, ${spare_1}, ${spare_2})
+
+#  Make one 'parameters' list entry for every parameter you want settable from the GUI.
+#     Keys include:
+#     * id (makes the value accessible as keyname, e.g. in the make entry)
+#     * label (label shown in the GUI)
+#     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#     * default
+parameters:
+- id: mmsi
+  label: MMSI
+  dtype: string
+  default: '338123456'
+- id: addressed
+  label: Addressed
+  dtype: bool
+  default: 'True'
+  options: ['True', 'False']
+  option_labels: ['True', 'False']
+    #option_attributes:
+    #hide: ['False', 'True']
+- id: channel_a
+  label: Channel A
+  dtype: int
+  default: 0
+- id: channel_b
+  label: Channel B
+  dtype: int
+  default: 0
+- id: txrx
+  label: TXRX
+  dtype: int
+  default: 0
+- id: power
+  label: High Power
+  dtype: bool 
+  default: 'False'
+  options: ['False', 'True']
+  option_labels: ['False', 'True']
+    #option_attributes:
+    #hide: ['False', 'True']
+- id: ne_lat
+  label: NE Lat
+  dtype: float
+  default: 0
+  hide: ${ ('none' if addressed==False else 'all') }
+- id: ne_lon
+  label: NE Lon
+  dtype: float
+  default: 0
+  hide: ${ ('none' if addressed==False else 'all') }
+- id: sw_lat
+  label: SW Lat
+  dtype: float
+  default: 0
+  hide: ${ ('none' if addressed==False else 'all') }
+- id: sw_lon
+  label: SW Lon
+  dtype: float
+  default: 0.0
+  hide: ${ ('none' if addressed==False else 'all') }
+- id: dest1
+  label: Dest1
+  dtype: int
+  default: 0
+  hide: ${ ('none' if addressed==True else 'all') }
+- id: dest2
+  label: Dest2
+  dtype: int
+  default: 0
+  hide: ${ ('none' if addressed==True else 'all') }
+- id: empty_1
+  label: empty_1
+  dtype: int
+  default: 0
+  hide: ${ ('part' if addressed==True else 'all') }
+- id: empty_2
+  label: empty_2
+  dtype: int
+  default: 0
+  hide: ${ ('part' if addressed==True else 'all') }
+- id: band_a
+  label: Bandwidth A
+  dtype: bool
+  default: 'False'
+  hide: 'part'
+  options: ['False', 'True']
+  option_labels: ['25k', '12.5k']
+    #option_attributes:
+    #hide: ['False', 'True']
+- id: band_b
+  label: Bandwidth B
+  dtype: bool
+  default: 'False'
+  hide: 'part'
+  options: ['False', 'True']
+  option_labels: ['25k', '12.5k']
+    #option_attributes:
+    #hide: ['False', 'True']
+- id: zonesize
+  label: Zone Size
+  dtype: int
+  default: 0
+  hide: 'part'
+- id: repeat
+  label: Repeat
+  dtype: int
+  default: 0
+  hide: 'part'
+- id: spare_1
+  label: Spare 1
+  dtype: raw
+  default: b''
+  hide: 'part'
+- id: spare_2
+  label: Spare 2
+  dtype: raw
+  default: b''
+  hide: 'part'
+
+    # TODO asserts:
+    # - spare can't be empty (need b'')
+asserts:
+- ${ type(spare_1) == bytes }
+- ${ type(spare_2) == bytes }
+
+#  Make one 'inputs' list entry per input and one 'outputs' list entry per output.
+#  Keys include:
+#      * label (an identifier for the GUI)
+#      * domain (optional - stream or message. Default is stream)
+#      * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#      * vlen (optional - data stream vector length. Default is 1)
+#      * optional (optional - set to 1 for optional inputs. Default is 0)
+inputs:
+- label: latlon
+  domain: message
+  dtype: message
+  optional: true
+- label: set_params
+  domain: message
+  dtype: message
+  optional: true
+
+outputs:
+- label: nmea_list
+  domain: message
+  dtype: message
+  optional: true
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1
