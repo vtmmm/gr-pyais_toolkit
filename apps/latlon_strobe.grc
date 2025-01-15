@@ -2,7 +2,7 @@ options:
   parameters:
     author: michael morrison
     catch_exceptions: 'True'
-    category: '[pyais_toolbox]/Hier'
+    category: '[pyais_toolkit]/Hier'
     cmake_opt: ''
     comment: 'https://wiki.gnuradio.org/index.php/Polymorphic_Types_(PMTs)
 
