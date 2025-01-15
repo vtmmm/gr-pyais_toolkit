@@ -35,6 +35,7 @@ GR_PYTHON_INSTALL(
     strobe_random_latlon.py
     strobe_random_latlon_bounding_box.py
     strobe_latlon_list_circle.py
+    strobe_latlon_list_line.py
     filter_pyais_combined.py
     filter_param_dictionary.py
     filter_bounding_box.py

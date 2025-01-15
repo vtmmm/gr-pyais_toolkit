@@ -20,6 +20,7 @@ install(FILES
     pyais_toolkit_strobe_random_latlon.block.yml
     pyais_toolkit_strobe_random_latlon_bounding_box.block.yml
     pyais_toolkit_strobe_latlon_list_circle.block.yml
+    pyais_toolkit_strobe_latlon_list_line.block.yml
     pyais_toolkit_filter_pyais_combined.block.yml
     pyais_toolkit_filter_param_dictionary.block.yml
     pyais_toolkit_filter_bounding_box.block.yml
