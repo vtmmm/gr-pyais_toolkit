@@ -22,6 +22,7 @@ add_subdirectory(bindings)
 GR_PYTHON_INSTALL(
     FILES
     __init__.py
+    message_type_14.py
     message_type_18.py
     message_type_19.py
     message_type_1.py

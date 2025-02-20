@@ -7,6 +7,7 @@
 #
 
 install(FILES
+    pyais_toolkit_message_type_14.block.yml
     pyais_toolkit_message_type_18.block.yml
     pyais_toolkit_message_type_19.block.yml
     pyais_toolkit_message_type_1.block.yml
