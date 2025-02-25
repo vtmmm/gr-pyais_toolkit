@@ -2,22 +2,22 @@
 
 The goal of these blocks is to make it easier to experiment with `pyais` in a modular fashion within GNU Radio.
 
-Warning: this is not in a 'finished' state, so some things may not work.
+Warning: this is not in a very 'finished' state, so some things may not work.
 
 # Dependencies
 
 * GNU Radio (`3.10.11.0` or later preferred)
-* `pyais` (tested with version `2.7.0`)
-* `gr-ais_simulator` from https://github.com/mictronics/ais-simulator
-* `geopy` (for some blocks)
+* `pyais` (`2.7.0` or later)
+* `gr-ais_simulator` from [Mictronics](https://github.com/mictronics/ais-simulator)
+* `geopy`
 
-GNU Radio `3.10.11.0` or later is required for flowgraphs that make use of the `Burst to Stream` block for generating continuous IQ files containing AIS bursts. If you only need the bursts, you can use an earlier version.
+GNU Radio `3.10.11.0` or later is required if you want to generate continuous IQ stream that contains AIS bursts (using the `Burst to Stream` block.) If you only need the bursts themselves, you can use an earlier version.
 
 Other versions of `pyais` have not been tested.
 
-`gr-ais_simulator` is only necessary if you want to generate IQ. If you only want to experiment with NMEA messages, it is not necessary.
+`gr-ais_simulator` is necessary to generate IQ. If you only want to experiment with NMEA messages, it's not needed.
 
-`geopy` is used to generate coordinates and for filtering AIS messages.
+`geopy` is used by a few blocks to generate coordinates or filter AIS messages.
 
 # Types of Blocks
 
