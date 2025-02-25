@@ -108,8 +108,8 @@ These are used to interface with `gr-ais` and `gr-pyais_json`.
 
 It can be used with:
 
-- NMEA Bytes to Strings
-- NMEA Strings to Bytes
+- NMEA Bytes to List
+- NMEA List to Bytes
 - NMEA to AIS Simulator (bits)
 
 # Thanks: 

@@ -1,5 +1,5 @@
 id: pyais_toolkit_nmea_strings_to_bytes
-label: NMEA Strings to NMEA Bytes
+label: NMEA List to NMEA Bytes
 category: '[pyais_toolkit]/Utilities'
 
 templates:
