@@ -21,9 +21,13 @@ Other versions of `pyais` have not been tested.
 
 # Types of Blocks
 
+![message_types](images/block_types.png)
+
 ## Message Filters
 
 These blocks ingest/output NMEA sentences, but only pass those that meet specific criteria.
+
+![message_filters](images/message_filters.png)
 
 ## Message Generators
 
@@ -31,9 +35,13 @@ These blocks generate one or more NMEA sentences in a list. Messages are generat
 
 See individual block documentation for more details.
 
+![message_generators](images/message_generators.png)
+
 ## Strobes
 
 These blocks output messages at a regular interval, and are typically connected to a Message Generator.
+
+![message_strobes](images/message_strobes.png)
  
 ## Utilities
 
@@ -41,6 +49,8 @@ These blocks perform a variety of functions, such as:
 - Grabbing specific data fields from a message
 - Converting message formats
 - Sending data to or receiving data from outside GNU Radio
+
+![utilities](images/utilities.png)
 
 # Message formats used by blocks
 
