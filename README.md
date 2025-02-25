@@ -4,17 +4,20 @@ The goal of these blocks is to make it easier to experiment with `pyais` in a mo
 
 Warning: this is not in a 'finished' state, so some things may not work.
 
-# Requirements
+# Dependencies
 
-* GNU Radio `3.10.11.0` or later
-* `pyais` version `2.7.0`
+* GNU Radio (`3.10.11.0` or later preferred)
+* `pyais` (tested with version `2.7.0`)
 * `gr-ais_simulator` from https://github.com/mictronics/ais-simulator
+* `geopy` (for some blocks)
 
 GNU Radio `3.10.11.0` or later is required for flowgraphs that make use of the `Burst to Stream` block for generating continuous IQ files containing AIS bursts. If you only need the bursts, you can use an earlier version.
 
+Other versions of `pyais` have not been tested.
+
 `gr-ais_simulator` is only necessary if you want to generate IQ. If you only want to experiment with NMEA messages, it is not necessary.
 
-Other versions of `pyais` have not been tested.
+`geopy` is used to generate coordinates and for filtering AIS messages.
 
 # Types of Blocks
 
@@ -63,13 +66,17 @@ At this time, support has only been added for and tested with Message Type 1.
 
 A PDU where the metadata is a dictionary containing one key/value pair: a key of 'mmsi' and a value containing a nine digit string.
 
+Example:
+
 `(((mmsi . 336123456)))`
 
 These are accepted by a variety of blocks to set the MMSI and trigger generation of new NMEA messages.
 
 ## set_params
 
-A PDU where the metadata is a dictionary of key/value pairs, where the keys match relevant pyais message data fields.
+A PDU where the metadata is a dictionary of key/value pairs. The keys match relevant pyais message data fields.
+
+Example:
 
 `(((course . 30)(heading . 45)))`
 
@@ -79,7 +86,7 @@ If a Message Generator receives this message and the keys match parameters used 
 
 When a block receives this message, it only stores the values; it does not trigger new NMEA messages.
 
-The `Hex to Bytes` block's `dict` input also supports this type of message.
+The **Hex to Bytes** block's `dict` input also supports this type of message.
 
 ## nmea_list
 
@@ -119,4 +126,3 @@ It can be used with:
 - Add Message Generator blocks for more message types
 - Add support for latlon_vec to more Message Generators
 - Add actual logging instead of random print statements
-- Make capitalization consistent across block names (GRC labels)
