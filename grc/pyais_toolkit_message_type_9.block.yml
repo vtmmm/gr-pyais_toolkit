@@ -1,5 +1,5 @@
 id: pyais_toolkit_message_type_9
-label: Message Type 9 (SAR aircraft position)
+label: Message Type 9 (SAR aircraft position report)
 category: '[pyais_toolkit]/Message Generators'
 
 templates:

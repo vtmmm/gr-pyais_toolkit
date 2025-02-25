@@ -1,5 +1,5 @@
 id: pyais_toolkit_message_type_27
-label: Message Type 27 (Long Range Broadcast)
+label: Message Type 27 (Long range position report)
 category: '[pyais_toolkit]/Message Generators'
 
 templates:

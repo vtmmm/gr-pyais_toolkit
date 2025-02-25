@@ -1,5 +1,5 @@
 id: pyais_toolkit_message_type_1
-label: Message Type 1 (Class A Pos Report)
+label: Message Type 1 (Class A position report)
 category: '[pyais_toolkit]/Message Generators'
 
 templates:

@@ -45,6 +45,9 @@ class nmea_to_nmea_bits(gr.sync_block):
 
 
     def pyais_msg_to_bitarray(self, pyais_msg):
+        """
+        Convert a pyais message to a numpy array of 48,49 for 0,1.
+        """
         bits_bitarray = pyais_msg.to_bitarray()
         binary_list = [int(bit) + 48 for bit in bits_bitarray.tolist()]
         binary_array = np.array(binary_list, dtype=np.int32)
@@ -52,6 +55,9 @@ class nmea_to_nmea_bits(gr.sync_block):
         return binary_array
 
     def handle_nmea_list(self, msg):
+        """
+        Decodes message, encodes it as bits, and publishes it.
+        """
         # Decode to msg
         nmea_list = pmt.to_python(msg)
         if type(nmea_list) != list:
@@ -72,7 +78,10 @@ class nmea_to_nmea_bits(gr.sync_block):
         self.message_port_pub(pmt.intern('nmea_bits'), msg_pdu)
 
     def handle_nmea_bytes(self, msg):
-        # Decode to msg (from gr-pyais_json)
+        """
+        Decodes message, encodes it as bits, and publishes it.
+        """
+        # Decode to msg (taken from gr-pyais_json)
         PMT_msg = pmt.to_python(msg)
         byte_array_msg = array('B', PMT_msg[1])
         byte_msg = bytes(byte_array_msg)

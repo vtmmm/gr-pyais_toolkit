@@ -1,5 +1,5 @@
 id: pyais_toolkit_message_type_6
-label: Message Type 6 (Addressed binary)
+label: Message Type 6 (Binary addressed message)
 category: '[pyais_toolkit]/Message Generators'
 
 templates:
