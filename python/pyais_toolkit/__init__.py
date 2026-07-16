@@ -51,4 +51,5 @@ from .strobe_latlon_moving import strobe_latlon_moving
 from .strobe_kml_polygons import strobe_kml_polygons
 from .strobe_text_file import strobe_text_file
 from .message_type_22 import message_type_22
+from .message_type_28 import message_type_28
 #

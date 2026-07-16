@@ -7,13 +7,13 @@ Warning: this is not in a very 'finished' state, so some things may not work.
 # Dependencies
 
 * GNU Radio (`3.10.11.0` or later preferred)
-* `pyais` (`2.7.0` or later)
+* `pyais` (`2.20.0` or later; `2.x` series)
 * `gr-ais_simulator` from [Mictronics](https://github.com/mictronics/ais-simulator)
 * `geopy`
 
 GNU Radio `3.10.11.0` or later is required if you want to generate continuous IQ stream that contains AIS bursts (using the `Burst to Stream` block.) If you only need the bursts themselves, you can use an earlier version.
 
-Other versions of `pyais` have not been tested.
+`pyais` `2.20.0` is required for the Message Type 28 block (pyais added `MessageType28` in `v2.20.0`). The `3.x` series of `pyais` has not been tested.
 
 `gr-ais_simulator` is necessary to generate IQ. If you only want to experiment with NMEA messages, it's not needed.
 

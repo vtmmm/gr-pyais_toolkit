@@ -52,7 +52,8 @@ GR_PYTHON_INSTALL(
     strobe_latlon_moving.py
     strobe_kml_polygons.py
     strobe_text_file.py
-    message_type_22.py DESTINATION ${GR_PYTHON_DIR}/gnuradio/pyais_toolkit
+    message_type_22.py
+    message_type_28.py DESTINATION ${GR_PYTHON_DIR}/gnuradio/pyais_toolkit
 )
 
 ########################################################################
