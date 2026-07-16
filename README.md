@@ -7,17 +7,31 @@ Warning: this is not in a very 'finished' state, so some things may not work.
 # Dependencies
 
 * GNU Radio (`3.10.11.0` or later preferred)
-* `pyais` (`2.7.0` or later)
+* `pyais` (`2.20.0` or later; `2.x` series)
 * `gr-ais_simulator` from [Mictronics](https://github.com/mictronics/ais-simulator)
 * `geopy`
 
 GNU Radio `3.10.11.0` or later is required if you want to generate continuous IQ stream that contains AIS bursts (using the `Burst to Stream` block.) If you only need the bursts themselves, you can use an earlier version.
 
-Other versions of `pyais` have not been tested.
+`pyais` `2.20.0` is required for the Message Type 28 block (pyais added `MessageType28` in `v2.20.0`). The `3.x` series of `pyais` has not been tested.
 
 `gr-ais_simulator` is necessary to generate IQ. If you only want to experiment with NMEA messages, it's not needed.
 
 `geopy` is used by a few blocks to generate coordinates or filter AIS messages.
+
+# Try it in Docker
+
+If you don't already have GNU Radio set up, the `docker/` directory provides a
+clean, self-contained environment (Ubuntu 26.04 + GNU Radio 3.10.12) that
+builds this module and can synthesize AIS IQ with one command:
+
+```bash
+docker build -f docker/Dockerfile -t gr-pyais-toolkit .
+mkdir -p out && docker run --rm -v "$PWD/out:/out" gr-pyais-toolkit
+```
+
+See `docker/README.md` for details. Users with an existing GNU Radio install
+can ignore this.
 
 # Types of Blocks
 

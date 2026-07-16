@@ -1,0 +1,11 @@
+# Working notes
+CODE_REVIEW.md
+
+# Build output
+build/
+**/__pycache__/
+
+# Generated IQ / capture files
+*.fc32
+*.iq
+out/

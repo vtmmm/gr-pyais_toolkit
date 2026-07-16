@@ -14,6 +14,7 @@ from pyais.messages import MessageType1
 from pyais.encode import encode_msg
 import random
 import string
+from time import sleep
 
 class message_type_1(gr.sync_block):
     """
@@ -42,7 +43,8 @@ class message_type_1(gr.sync_block):
             heading=0,
             latitude=0.0,
             longitude=0.0,
-            speed=0
+            speed=0,
+            tx_delay=0.005
             ):
             #accuracy=0,
             #is_itdma=False,
@@ -66,6 +68,10 @@ class message_type_1(gr.sync_block):
 
         # Variables in case of latlon_vec
         self.mmsi_list = None
+
+        # Delay between publishing each contact of a latlon_vec, in
+        # seconds. Set to 0 to disable pacing.
+        self.tx_delay = tx_delay
 
         # Message ports
         self.message_port_register_in(pmt.intern('latlon'))
@@ -150,6 +156,8 @@ class message_type_1(gr.sync_block):
 
             nmea_list = pmt.to_pmt(encode_msg(self.msg1_vec, talker_id='AIVDM'))
             self.message_port_pub(pmt.intern('nmea_list'), nmea_list)
+            if self.tx_delay > 0:
+                sleep(self.tx_delay)
         return
 
     def initialize_mmsi_list(self):
