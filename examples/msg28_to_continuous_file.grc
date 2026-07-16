@@ -1,0 +1,502 @@
+options:
+  parameters:
+    author: user
+    catch_exceptions: 'True'
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
+    comment: 'Generates continuous IQ containing a variety of
+
+      Message 28 (Aid-to-Navigation Report, single-slot)
+
+      bursts on top of noise, written to a file.
+
+
+      Three AtoNs are simulated:
+
+      - a virtual AtoN marking a navigation hazard
+
+      - a physical floating port hand mark with a swing circle
+
+      - a mobile AtoN reporting its COG/SOG vector,
+
+      with a position that actually moves to match.
+
+
+      Requires pyais 2.20.0+, gr-ais_simulator, and
+
+      GNU Radio 3.10.11.0+ (Burst to Stream).'
+    copyright: ''
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: no_gui
+    hier_block_src_path: '.:'
+    id: msg28_to_continuous_file
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: run
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: AIS Message Type 28 to continuous IQ file
+    window_size: (1000,1000)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: bit_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: '9600'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [368, 28.0]
+    rotation: 0
+    state: enabled
+- name: samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: 1e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [248, 28.0]
+    rotation: 0
+    state: enabled
+- name: ais_simulator_bitstring_to_frame_0
+  id: ais_simulator_bitstring_to_frame
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    enable_nrzi: 'True'
+    len_tag_key: packet_len
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1080, 396.0]
+    rotation: 0
+    state: true
+- name: analog_fastnoise_source_x_0
+  id: analog_fastnoise_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: '.05'
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    noise_type: analog.GR_GAUSSIAN
+    samples: '8192'
+    seed: '0'
+    type: complex
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [72, 780.0]
+    rotation: 0
+    state: enabled
+- name: blocks_add_xx_0
+  id: blocks_add_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [552, 784.0]
+    rotation: 0
+    state: enabled
+- name: blocks_burst_to_stream_0
+  id: blocks_burst_to_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    len_tag_key: '"packet_len"'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    propagate_tags: 'False'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [552, 684.0]
+    rotation: 180
+    state: enabled
+- name: blocks_file_sink_0
+  id: blocks_file_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    append: 'False'
+    comment: ''
+    file: /tmp/msg28_continuous_1Msps.fc32
+    type: complex
+    unbuffered: 'False'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [784, 772.0]
+    rotation: 0
+    state: enabled
+- name: blocks_multiply_const_xx_0
+  id: blocks_multiply_const_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: '0.9'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1080, 588.0]
+    rotation: 0
+    state: enabled
+- name: blocks_stream_to_tagged_stream_0
+  id: blocks_stream_to_tagged_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    len_tag_key: '"packet_len"'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    packet_len: int(samp_rate/bit_rate)*128
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [784, 676.0]
+    rotation: 180
+    state: enabled
+- name: blocks_tag_gate_1
+  id: blocks_tag_gate
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    propagate_tags: 'False'
+    single_key: '""'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1008, 676.0]
+    rotation: 180
+    state: enabled
+- name: blocks_throttle2_0
+  id: blocks_throttle2
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    ignoretag: 'True'
+    limit: auto
+    maximum: '0.1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samples_per_second: samp_rate
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [296, 796.0]
+    rotation: 0
+    state: enabled
+- name: digital_gmsk_mod_0
+  id: digital_gmsk_mod
+  parameters:
+    affinity: ''
+    alias: ''
+    bt: '0.4'
+    comment: ''
+    do_unpack: 'True'
+    log: 'False'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samples_per_symbol: int(samp_rate/bit_rate)
+    verbose: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1248, 476.0]
+    rotation: 0
+    state: enabled
+- name: pdu_pdu_to_tagged_stream_0
+  id: pdu_pdu_to_tagged_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    tag: packet_len
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [896, 484.0]
+    rotation: 0
+    state: true
+- name: pyais_toolkit_message_type_28_0
+  id: pyais_toolkit_message_type_28
+  parameters:
+    affinity: ''
+    alias: ''
+    aid_type: '39'
+    auth: '0'
+    charted_status: '0'
+    comment: 'Virtual AtoN marking a
+
+      navigation hazard.'
+    dimension: '0'
+    dimension_additional_data: '0'
+    dimensions_a: '0'
+    dimensions_b: '0'
+    iala_mrn: '10001'
+    latitude: '0.0'
+    longitude: '0.0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    mmsi: '993381001'
+    repeat: '0'
+    restricted: '0'
+    second: '60'
+    station_status: '0'
+    station_type: '4'
+    status_bits: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [408, 172.0]
+    rotation: 0
+    state: enabled
+- name: pyais_toolkit_message_type_28_1
+  id: pyais_toolkit_message_type_28
+  parameters:
+    affinity: ''
+    alias: ''
+    aid_type: '20'
+    auth: '0'
+    charted_status: '1'
+    comment: 'Physical floating port hand mark,
+
+      charted, with a 150 m swing circle
+
+      (dimension type 2: A in 100 m steps
+
+      + B in 1 m steps).'
+    dimension: '2'
+    dimension_additional_data: '0'
+    dimensions_a: '1'
+    dimensions_b: '50'
+    iala_mrn: '10002'
+    latitude: '0.0'
+    longitude: '0.0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    mmsi: '993381002'
+    repeat: '0'
+    restricted: '0'
+    second: '60'
+    station_status: '0'
+    station_type: '0'
+    status_bits: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [408, 396.0]
+    rotation: 0
+    state: enabled
+- name: pyais_toolkit_message_type_28_2
+  id: pyais_toolkit_message_type_28
+  parameters:
+    affinity: ''
+    alias: ''
+    aid_type: '36'
+    auth: '0'
+    charted_status: '0'
+    comment: 'Mobile AtoN (towed object) reporting
+
+      its vector (dimension type 3:
+
+      A = COG 90 deg, B = SOG 4 kn).
+
+      The strobe moves its position to match.'
+    dimension: '3'
+    dimension_additional_data: '0'
+    dimensions_a: '90'
+    dimensions_b: '4'
+    iala_mrn: '10003'
+    latitude: '0.0'
+    longitude: '0.0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    mmsi: '993381003'
+    repeat: '0'
+    restricted: '0'
+    second: '60'
+    station_status: '1'
+    station_type: '5'
+    status_bits: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [408, 620.0]
+    rotation: 0
+    state: enabled
+- name: pyais_toolkit_nmea_to_nmea_bits_0
+  id: pyais_toolkit_nmea_to_nmea_bits
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [704, 396.0]
+    rotation: 0
+    state: enabled
+- name: pyais_toolkit_strobe_latlon_moving_0
+  id: pyais_toolkit_strobe_latlon_moving
+  parameters:
+    affinity: ''
+    alias: ''
+    bearing: '0'
+    comment: 'Fixed position (speed 0):
+
+      hazard south of the channel.'
+    initial_delay: '0.0'
+    interval: '3'
+    lat_ref: '36.95'
+    lon_ref: '-76.32'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    speed: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [128, 172.0]
+    rotation: 0
+    state: enabled
+- name: pyais_toolkit_strobe_latlon_moving_1
+  id: pyais_toolkit_strobe_latlon_moving
+  parameters:
+    affinity: ''
+    alias: ''
+    bearing: '0'
+    comment: 'Fixed position (speed 0):
+
+      buoy at the channel entrance.'
+    initial_delay: '1.0'
+    interval: '5'
+    lat_ref: '36.99'
+    lon_ref: '-76.30'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    speed: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [128, 396.0]
+    rotation: 0
+    state: enabled
+- name: pyais_toolkit_strobe_latlon_moving_2
+  id: pyais_toolkit_strobe_latlon_moving
+  parameters:
+    affinity: ''
+    alias: ''
+    bearing: '90'
+    comment: 'Moving east at 4 knots, matching
+
+      the reported mobile AtoN vector.'
+    initial_delay: '2.0'
+    interval: '2'
+    lat_ref: '37.02'
+    lon_ref: '-76.35'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    speed: '4'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [128, 620.0]
+    rotation: 0
+    state: enabled
+
+connections:
+- [ais_simulator_bitstring_to_frame_0, '0', digital_gmsk_mod_0, '0']
+- [analog_fastnoise_source_x_0, '0', blocks_throttle2_0, '0']
+- [blocks_add_xx_0, '0', blocks_file_sink_0, '0']
+- [blocks_burst_to_stream_0, '0', blocks_add_xx_0, '0']
+- [blocks_multiply_const_xx_0, '0', blocks_tag_gate_1, '0']
+- [blocks_stream_to_tagged_stream_0, '0', blocks_burst_to_stream_0, '0']
+- [blocks_tag_gate_1, '0', blocks_stream_to_tagged_stream_0, '0']
+- [blocks_throttle2_0, '0', blocks_add_xx_0, '1']
+- [digital_gmsk_mod_0, '0', blocks_multiply_const_xx_0, '0']
+- [pdu_pdu_to_tagged_stream_0, '0', ais_simulator_bitstring_to_frame_0, '0']
+- [pyais_toolkit_message_type_28_0, nmea_list, pyais_toolkit_nmea_to_nmea_bits_0, nmea_list]
+- [pyais_toolkit_message_type_28_1, nmea_list, pyais_toolkit_nmea_to_nmea_bits_0, nmea_list]
+- [pyais_toolkit_message_type_28_2, nmea_list, pyais_toolkit_nmea_to_nmea_bits_0, nmea_list]
+- [pyais_toolkit_nmea_to_nmea_bits_0, nmea_bits, pdu_pdu_to_tagged_stream_0, pdus]
+- [pyais_toolkit_strobe_latlon_moving_0, latlon, pyais_toolkit_message_type_28_0, latlon]
+- [pyais_toolkit_strobe_latlon_moving_1, latlon, pyais_toolkit_message_type_28_1, latlon]
+- [pyais_toolkit_strobe_latlon_moving_2, latlon, pyais_toolkit_message_type_28_2, latlon]
+
+metadata:
+  file_format: 1
+  grc_version: v3.10.11.0-64-g35346914
