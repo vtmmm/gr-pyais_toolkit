@@ -19,6 +19,20 @@ GNU Radio `3.10.11.0` or later is required if you want to generate continuous IQ
 
 `geopy` is used by a few blocks to generate coordinates or filter AIS messages.
 
+# Try it in Docker
+
+If you don't already have GNU Radio set up, the `docker/` directory provides a
+clean, self-contained environment (Ubuntu 26.04 + GNU Radio 3.10.12) that
+builds this module and can synthesize AIS IQ with one command:
+
+```bash
+docker build -f docker/Dockerfile -t gr-pyais-toolkit .
+mkdir -p out && docker run --rm -v "$PWD/out:/out" gr-pyais-toolkit
+```
+
+See `docker/README.md` for details. Users with an existing GNU Radio install
+can ignore this.
+
 # Types of Blocks
 
 ![message_types](images/block_types.png)

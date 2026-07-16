@@ -1,0 +1,20 @@
+Fix bitstring_to_frame output length (Mictronics/ais-simulator#9)
+
+The block set noutput_items to the frame length in bits while only
+copying len_frame_real/8 bytes to the output, producing 8x too many
+output items and corrupt bursts. Set noutput_items to the byte count
+to match the memcpy.
+
+See https://github.com/Mictronics/ais-simulator/issues/9
+
+--- a/gr-ais_simulator/lib/bitstring_to_frame_impl.cc
++++ b/gr-ais_simulator/lib/bitstring_to_frame_impl.cc
+@@ -438,7 +438,7 @@ namespace gr
+
+                 // output
+                 memcpy(out, byte_frame, len_frame_real / 8);
+-                noutput_items = len_frame_real;
++                noutput_items = len_frame_real/8;
+             }
+             else
+             {

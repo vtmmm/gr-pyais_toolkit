@@ -1,0 +1,19 @@
+Build against Boost >= 1.87 (removed asio resolver::query)
+
+Boost 1.87 removed the deprecated boost::asio resolver::query type and
+the resolve(query) overload. Ubuntu 26.04 ships a Boost new enough to
+hit this. Use the modern resolve(protocol, host, service, flags)
+overload, which returns a results range, and take the first endpoint.
+
+--- a/gr-ais_simulator/lib/websocket_pdu_impl.cc
++++ b/gr-ais_simulator/lib/websocket_pdu_impl.cc
+@@ -315,8 +315,7 @@ namespace gr
+             else
+             {
+                 tcp::tcp::resolver resolver(d_ioc);
+-                tcp::tcp::resolver::query query(tcp::v4(), addr, port, net::ip::resolver_query_base::passive);
+-                tcp_ep = *resolver.resolve(query);
++                tcp_ep = resolver.resolve(tcp::v4(), addr, port, net::ip::resolver_query_base::passive).begin()->endpoint();
+             }
+
+             // Create and launch a listening port
