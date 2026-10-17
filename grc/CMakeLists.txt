@@ -36,5 +36,7 @@ install(FILES
     pyais_toolkit_nmea_strings_to_bytes.block.yml
     pyais_toolkit_strobe_latlon_moving.block.yml
     pyais_toolkit_strobe_kml_polygons.block.yml
-    pyais_toolkit_message_type_22.block.yml DESTINATION share/gnuradio/grc/blocks
+    pyais_toolkit_strobe_text_file.block.yml
+    pyais_toolkit_message_type_22.block.yml
+    pyais_toolkit_message_type_28.block.yml DESTINATION share/gnuradio/grc/blocks
 )

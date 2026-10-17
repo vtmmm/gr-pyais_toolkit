@@ -1,0 +1,6 @@
+.git
+**/build
+**/__pycache__
+*.fc32
+*.iq
+out

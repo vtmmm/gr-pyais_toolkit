@@ -4,7 +4,7 @@ category: '[pyais_toolkit]/Message Generators'
 
 templates:
   imports: from gnuradio import pyais_toolkit
-  make: pyais_toolkit.message_type_1(${mmsi}, ${course}, ${heading}, ${latitude}, ${longitude})
+  make: pyais_toolkit.message_type_1(${mmsi}, ${course}, ${heading}, ${latitude}, ${longitude}, tx_delay=${tx_delay})
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:
@@ -33,6 +33,10 @@ parameters:
   label: Longitude
   dtype: float
   default: 0.0
+- id: tx_delay
+  label: TX Delay (s)
+  dtype: float
+  default: 0.005
 #- id: ...
 #  label: ...
 #  dtype: ...

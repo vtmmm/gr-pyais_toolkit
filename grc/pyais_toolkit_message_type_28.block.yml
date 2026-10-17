@@ -1,0 +1,126 @@
+id: pyais_toolkit_message_type_28
+label: Message Type 28 (Aid-to-Navigation report, single-slot)
+category: '[pyais_toolkit]/Message Generators'
+
+templates:
+  imports: from gnuradio import pyais_toolkit
+  make: pyais_toolkit.message_type_28(${mmsi}, ${latitude}, ${longitude}, ${station_type}, ${aid_type}, ${iala_mrn}, ${restricted}, ${dimension}, ${dimensions_a}, ${dimensions_b}, ${dimension_additional_data}, ${charted_status}, ${station_status}, ${status_bits}, ${auth}, ${second}, ${repeat})
+
+#  Make one 'parameters' list entry for every parameter you want settable from the GUI.
+#     Keys include:
+#     * id (makes the value accessible as keyname, e.g. in the make entry)
+#     * label (label shown in the GUI)
+#     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#     * default
+parameters:
+- id: mmsi
+  label: MMSI
+  dtype: string
+  default: '993381000'
+- id: latitude
+  label: Latitude
+  dtype: float
+  default: 0.0
+- id: longitude
+  label: Longitude
+  dtype: float
+  default: 0.0
+- id: station_type
+  label: AIS AtoN Station Type
+  dtype: int
+  default: 0
+- id: aid_type
+  label: Type of AtoN
+  dtype: int
+  default: 0
+- id: iala_mrn
+  label: IALA AtoN MRN
+  dtype: int
+  default: 0
+- id: restricted
+  label: Restricted Use Indicator
+  dtype: int
+  default: 0
+  hide: 'part'
+- id: dimension
+  label: AtoN Dimensions Type
+  dtype: int
+  default: 0
+- id: dimensions_a
+  label: AtoN Dimension A
+  dtype: int
+  default: 0
+- id: dimensions_b
+  label: AtoN Dimension B
+  dtype: int
+  default: 0
+- id: dimension_additional_data
+  label: Additional Dimension Type Flag
+  dtype: int
+  default: 0
+  hide: 'part'
+- id: charted_status
+  label: Charted Status
+  dtype: int
+  default: 0
+  hide: 'part'
+- id: station_status
+  label: On-station Status
+  dtype: int
+  default: 0
+- id: status_bits
+  label: AtoN Status Bits
+  dtype: int
+  default: 0
+  hide: 'part'
+- id: auth
+  label: Authentication Flag
+  dtype: int
+  default: 0
+  hide: 'part'
+- id: second
+  label: Time Stamp (s)
+  dtype: int
+  default: 60
+  hide: 'part'
+- id: repeat
+  label: Repeat
+  dtype: int
+  default: 0
+  hide: 'part'
+
+#  Make one 'inputs' list entry per input and one 'outputs' list entry per output.
+#  Keys include:
+#      * label (an identifier for the GUI)
+#      * domain (optional - stream or message. Default is stream)
+#      * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#      * vlen (optional - data stream vector length. Default is 1)
+#      * optional (optional - set to 1 for optional inputs. Default is 0)
+inputs:
+- label: latlon
+  domain: message
+  dtype: message
+  optional: true
+- label: set_params
+  domain: message
+  dtype: message
+  optional: true
+
+outputs:
+- label: nmea_list
+  domain: message
+  dtype: message
+  optional: true
+
+documentation: |-
+  Generates AIS Message 28 (Aid-to-Navigation Report, single-slot),
+  defined in ITU-R M.1371-6 Table 84.
+
+  Requires pyais v2.20.0 or later.
+
+  Any message received on the latlon port sets the AtoN position and
+  triggers generation of a new NMEA sentence on nmea_list.
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

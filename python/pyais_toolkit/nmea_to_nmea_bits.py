@@ -25,7 +25,7 @@ class nmea_to_nmea_bits(gr.sync_block):
     For example, the following will generate IQ bursts that
     could be sent to a radio:
     \n
-    NMEA to AIS Simulator > PDU to Tagged Stream >
+    NMEA to AIS Simulator (bits) > PDU to Tagged Stream >
     Bit String to Frame > GMSK Mod > Fast Multiply > radio or IQ
     """
     def __init__(self):
@@ -42,6 +42,10 @@ class nmea_to_nmea_bits(gr.sync_block):
         # Message port callbacks
         self.set_msg_handler(pmt.intern('nmea_list'), self.handle_nmea_list)
         self.set_msg_handler(pmt.intern('nmea_bytes'), self.handle_nmea_bytes)
+
+        # Buffers for multipart messages arriving one sentence at a time
+        # on nmea_bytes, keyed by NMEA sequence id
+        self._fragment_buffers = {}
 
 
     def pyais_msg_to_bitarray(self, pyais_msg):
@@ -77,15 +81,54 @@ class nmea_to_nmea_bits(gr.sync_block):
         msg_pdu = pmt.cons(metadata, pmt.init_u8vector(len(msg_np), msg_np.tolist()))
         self.message_port_pub(pmt.intern('nmea_bits'), msg_pdu)
 
+    def _collect_fragments(self, sentence):
+        """
+        Buffers multipart sentences until all fragments have arrived.
+        Returns a tuple of sentences ready to decode, or None while
+        fragments of a multipart message are still outstanding.
+        """
+        fields = sentence.split(b',')
+        try:
+            total = int(fields[1])
+            num = int(fields[2])
+        except (IndexError, ValueError):
+            return (sentence,)
+
+        if total <= 1:
+            return (sentence,)
+
+        # Drop stale partial messages if the buffer grows without bound
+        if len(self._fragment_buffers) > 64:
+            print("nmea_to_nmea_bits: clearing stale multipart fragment buffers")
+            self._fragment_buffers.clear()
+
+        seq_id = fields[3]
+        fragments = self._fragment_buffers.setdefault(seq_id, {})
+        fragments[num] = sentence
+        if all(i in fragments for i in range(1, total + 1)):
+            del self._fragment_buffers[seq_id]
+            return tuple(fragments[i] for i in range(1, total + 1))
+        return None
+
     def handle_nmea_bytes(self, msg):
         """
         Decodes message, encodes it as bits, and publishes it.
+        Multipart messages are buffered until all fragments arrive.
         """
         # Decode to msg (taken from gr-pyais_json)
         PMT_msg = pmt.to_python(msg)
         byte_array_msg = array('B', PMT_msg[1])
         byte_msg = bytes(byte_array_msg)
-        decoded_msg = decode(byte_msg)
+
+        sentences = self._collect_fragments(byte_msg)
+        if sentences is None:
+            return
+
+        try:
+            decoded_msg = decode(*sentences)
+        except Exception as e:
+            print(e)
+            return
 
         # Encode as bit array
         msg_np = self.pyais_msg_to_bitarray(decoded_msg)

@@ -1,0 +1,53 @@
+id: pyais_toolkit_strobe_text_file
+label: Strobe Text File
+category: '[pyais_toolkit]/Strobes'
+
+templates:
+  imports: from gnuradio import pyais_toolkit
+  make: pyais_toolkit.strobe_text_file(${filename}, ${interval}, ${initial_delay}, ${repeat_each}, ${repeat_all})
+
+#  Make one 'parameters' list entry for every parameter you want settable from the GUI.
+#     Keys include:
+#     * id (makes the value accessible as keyname, e.g. in the make entry)
+#     * label (label shown in the GUI)
+#     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#     * default
+parameters:
+- id: filename
+  label: Filename
+  dtype: string
+  default: ''
+- id: interval
+  label: Interval (s)
+  dtype: float
+  default: 1.0
+- id: initial_delay
+  label: initial_delay (s)
+  dtype: float
+  default: 0.0
+- id: repeat_each
+  label: Repeat Each
+  dtype: int
+  default: 1
+- id: repeat_all
+  label: Repeat All
+  dtype: enum
+  default: 'False'
+  options: ['True', 'False']
+  option_labels: ['True', 'False']
+
+inputs:
+- label: set_params
+  domain: message
+  dtype: message
+  optional: true
+
+outputs:
+- label: nmea_list
+  domain: message
+  dtype: message
+  optional: true
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1
